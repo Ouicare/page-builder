@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        {% verbatim %}
+            <div class="col-lg-6" ng-controller="PageBuilderController as builder">
+                {{builder.content}}
+            </div>
+        {% endverbatim %}
+        <div class="col-lg-6">
+            Angular is fun!
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+{% endblock %}
+{% block stylesheets %}
+{% endblock %}
