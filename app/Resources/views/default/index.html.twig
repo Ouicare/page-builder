@@ -100,8 +100,12 @@
                 <div class="row">
                 <div class="placeholder-container">
                     <div class="placeholder">
-                        <div class="placeholder-content col-md-12"  ng-if="item.title === '1 Column'">
-                            <div class="placeholder-content-area apps-container" ui-sortable="sortableOptions">
+                        <div class="placeholder-content col-md-12" ng-model="item"  ng-if="item.title === '1 Column'">
+                            <div ng-model="item.items" class="placeholder-content-area apps-container" ui-sortable="sortableOptions">
+                            <div ng-repeat="comp in item.items track by $index" class="comp">
+                                <tg-dynamic-directive ng-model="comp" tg-dynamic-directive-view="getView">
+                                </tg-dynamic-directive>
+                            </div>
                             </div>
                         </div>
                         <div class="placeholder-content col-md-6" ng-if="item.title === '2 Columns'">
