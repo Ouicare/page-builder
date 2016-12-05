@@ -2,16 +2,13 @@ app.controller('PageBuilderController', PageBuilderController);
 function PageBuilderController($scope, $compile) {
     var vm = $scope;
     vm.items = [];
-    vm.composants = [];
     vm.name = 'The page builder ';
     vm.headers = [{title: 'Header 1', locked: true, type: 'header'}, {title: 'Header 2', locked: true, type: 'header'}];
-    vm.layouts = [{title: '1 Column', text: "1 x 100%", type: 'layout', items: []}, {title: '2 Columns', text: "2 x 50%", type: 'layout', items: []}];
+    vm.layouts = [{title: '1 Column', text: "1 x 100%", type: 'layout', composants: []}, {title: '2 Columns', text: "2 x 50%", type: 'layout', left: [], right: []}];
     vm.model = [];
     $scope.sortableOptions = {
         update: function (e, ui) {
             console.log(vm.items);
-            console.log(vm.composants);
-            console.log($(e.target));
             // if the element is removed from the first container
             if ($(e.target).hasClass('first') &&
                     ui.item.sortable.droptarget &&
