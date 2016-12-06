@@ -1,8 +1,9 @@
 app.controller('PageBuilderController', PageBuilderController);
+
 function PageBuilderController($scope, toastr) {
     var vm = $scope;
     vm.items = [];
-    vm.name = 'The page builder ';
+    vm.name = 'The page builder';
     vm.components = {
         headers: [
             {title: 'Header 1', locked: true, type: 'header'},
@@ -16,8 +17,7 @@ function PageBuilderController($scope, toastr) {
             {title: 'Groupement de santé', text: "Groupement de santé", type: 'model', fields: [], data: [{name: "Icone groupement", ticked: true}, {name: "Nom établissement", ticked: true}, {name: "Adresse établissement", ticked: true}]},
             {title: 'Etablissement de santé', text: "Groupement de santé", type: 'model', fields: [], data: [{name: "Icone groupement", ticked: true}, {name: "Nom groupement", ticked: true}, {name: "Adresse groupement", ticked: true}]}
         ]
-    }
-    ;
+    };
     vm.orig_components = angular.copy(vm.components);
     vm.model = [];
     $scope.sortableOptions = {
@@ -69,3 +69,4 @@ function PageBuilderController($scope, toastr) {
         vm.components = angular.copy(vm.orig_components);
     }
 }
+
