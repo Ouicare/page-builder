@@ -26,9 +26,7 @@ $scope.options = {
  $scope.getContent = function() {
     return $scope.content;
   };
-  $scope.remove = function(index){
-      $scope.items.splice(index,1);
-  };
+  
 
   $scope.setContent = function(content) {
     $scope.content = content;

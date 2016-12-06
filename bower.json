@@ -21,7 +21,8 @@
     "angular-summernote": "^0.8.1",
     "jquery-ui": "^1.12.1",
     "angular-ui-sortable": "^0.15.1",
-    "tg-dynamic-directive": "^0.4.0"
+    "tg-dynamic-directive": "^0.4.0",
+    "angular-toastr": "^2.1.1"
   },
   "resolutions": {
     "angular": "~1.5.0"

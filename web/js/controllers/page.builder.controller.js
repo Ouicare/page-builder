@@ -1,5 +1,5 @@
 app.controller('PageBuilderController', PageBuilderController);
-function PageBuilderController($scope, $compile) {
+function PageBuilderController($scope, toastr) {
     var vm = $scope;
     vm.items = [];
     vm.name = 'The page builder ';
@@ -8,7 +8,12 @@ function PageBuilderController($scope, $compile) {
     vm.model = [];
     $scope.sortableOptions = {
         update: function (e, ui) {
-            console.log(vm.items);
+            console.log(ui.item.sortable.model);
+            console.log(ui.item.sortable.droptargetModel[ui.item.sortable.dropindex]);
+            if(!ui.item.sortable.received && ui.item.sortable.droptargetModel[ui.item.sortable.dropindex] && ui.item.sortable.droptargetModel[ui.item.sortable.dropindex].type === "layout" && ui.item.sortable.sourceModel[ui.item.sortable.index].type === "layout"){
+                toastr.success("Layout within layout are not allowed", 'error');
+                ui.item.sortable.cancel();
+            }
             // if the element is removed from the first container
             if ($(e.target).hasClass('first') &&
                     ui.item.sortable.droptarget &&
@@ -48,9 +53,10 @@ function PageBuilderController($scope, $compile) {
         return null;
     };
     vm.test = function (index) {
-        console.log(index);
+        //console.log(index);
     }
     vm.remove = function (index) {
+        //console.log($scope.items[index]);
         $scope.items.splice(index, 1);
     };
     vm.getName = function () {
