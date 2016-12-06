@@ -19,8 +19,8 @@
                             </div>
                             <div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne1">
                                 <div class="panel-body">
-                                    <div class="list-group first layout" ui-sortable="sortableOptions" ng-model="layouts">
-                                        <a href="#" class="list-group-item active item" ng-repeat="item in layouts track by $index">
+                                    <div class="list-group first layout" ui-sortable="sortableOptions" ng-model="components.layouts">
+                                        <a href="#" class="list-group-item active item" ng-repeat="item in components.layouts track by $index">
                                             <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i> {{item.title}}</h4>
                                             <p class="list-group-item-text"><i class="fa fa-th-list"></i> {{item.text}}</p>
                                         </a>
@@ -38,8 +38,8 @@
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
-                                    <div class="list-group first header" ui-sortable="sortableOptions" ng-model="headers">
-                                        <a href="#" class="list-group-item active item" ng-repeat="item in headers track by $index">
+                                    <div class="list-group first header" ui-sortable="sortableOptions" ng-model="components.headers">
+                                        <a href="#" class="list-group-item active item" ng-repeat="item in components.headers track by $index">
                                             <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i>{{item.title}}</h4>
                                             <p class="list-group-item-text">{{item.title}}</p>
                                         </a>
@@ -99,38 +99,38 @@
             <script type="text/ng-template" id="layout.html">
                 <div class="row">
                 <div class="placeholder-container">
-                    <div class="placeholder">
-                        <div class="placeholder-content col-md-12" ng-model="item"  ng-if="item.title === '1 Column'">
-                            <div ng-model="item.composants" class="placeholder-content-area apps-container" ui-sortable="sortableOptions">
-                            <div ng-repeat="composant in item.composants track by $index" class="composant">
-                                <tg-dynamic-directive ng-if="composant.type !='layout'" ng-model="composant" tg-dynamic-directive-view="getView">
-                                </tg-dynamic-directive>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="placeholder-content col-md-6" ng-if="item.title === '2 Columns'">
-                            <div ng-model="item.left" class="placeholder-content-area apps-container" ui-sortable="sortableOptions">
-                                <div ng-repeat="composant in item.left track by $index" class="left">
-                                    <tg-dynamic-directive ng-if="composant.type !='layout'" ng-model="composant" tg-dynamic-directive-view="getView">
-                                    </tg-dynamic-directive>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="placeholder-content col-md-6" ng-if="item.title === '2 Columns'">
-                            <div ng-model="item.right" class="placeholder-content-area apps-container" ui-sortable="sortableOptions">
-                                <div ng-repeat="composant in item.right track by $index" class="right">
-                                    <tg-dynamic-directive ng-if="composant.type !='layout'" ng-model="composant" tg-dynamic-directive-view="getView">
-                                    </tg-dynamic-directive>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="placeholder-handle ui-sortable-handle">
-                        <div class="handle-move"><i class="fa fa-arrows"></i></div>
-                        <div class="handle-remove" ng-click="remove($index)" style="cursor:pointer"><i class="fa fa-times"></i></div>
-                    </div>
+                <div class="placeholder">
+                <div class="placeholder-content col-md-12" ng-model="item"  ng-if="item.title === '1 Column'">
+                <div ng-model="item.composants" class="placeholder-content-area apps-container" ui-sortable="sortableOptions">
+                <div ng-repeat="composant in item.composants track by $index" class="composant">
+                <tg-dynamic-directive ng-if="composant.type !='layout'" ng-model="composant" tg-dynamic-directive-view="getView">
+                </tg-dynamic-directive>
                 </div>
-            </div>
+                </div>
+                </div>
+                <div class="placeholder-content col-md-6" ng-if="item.title === '2 Columns'">
+                <div ng-model="item.left" class="placeholder-content-area apps-container" ui-sortable="sortableOptions">
+                <div ng-repeat="composant in item.left track by $index" class="left">
+                <tg-dynamic-directive ng-if="composant.type !='layout'" ng-model="composant" tg-dynamic-directive-view="getView">
+                </tg-dynamic-directive>
+                </div>
+                </div>
+                </div>
+                <div class="placeholder-content col-md-6" ng-if="item.title === '2 Columns'">
+                <div ng-model="item.right" class="placeholder-content-area apps-container" ui-sortable="sortableOptions">
+                <div ng-repeat="composant in item.right track by $index" class="right">
+                <tg-dynamic-directive ng-if="composant.type !='layout'" ng-model="composant" tg-dynamic-directive-view="getView">
+                </tg-dynamic-directive>
+                </div>
+                </div>
+                </div>
+                </div>
+                <div class="placeholder-handle ui-sortable-handle">
+                <div class="handle-move"><i class="fa fa-arrows"></i></div>
+                <div class="handle-remove" ng-click="remove($index)" style="cursor:pointer"><i class="fa fa-times"></i></div>
+                </div>
+                </div>
+                </div>
             </script>
         {% endverbatim %}
     </div>
