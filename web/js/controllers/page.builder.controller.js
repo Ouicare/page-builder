@@ -11,11 +11,14 @@ function PageBuilderController($scope, toastr) {
         layouts: [
             {title: '1 Column', text: "1 x 100%", type: 'layout', composants: []},
             {title: '2 Columns', text: "2 x 50%", type: 'layout', left: [], right: []}
+        ],
+        models: [
+            {title: 'Groupement de santé', text: "Groupement de santé", type: 'model', fields: [], data: [{name: "Icone groupement", ticked: true}, {name: "Nom établissement", ticked: true}, {name: "Adresse établissement", ticked: true}]},
+            {title: 'Etablissement de santé', text: "Groupement de santé", type: 'model', fields: [], data: [{name: "Icone groupement", ticked: true}, {name: "Nom groupement", ticked: true}, {name: "Adresse groupement", ticked: true}]}
         ]
-    };
-
+    }
+    ;
     vm.orig_components = angular.copy(vm.components);
-
     vm.model = [];
     $scope.sortableOptions = {
         update: function (e, ui) {
@@ -47,6 +50,8 @@ function PageBuilderController($scope, toastr) {
                 return 'nestable_item_1.html';
             } else if (item.type === "layout") {
                 return 'layout.html';
+            } else if (item.type === "model") {
+                return 'model_item.html';
             }
         }
         return null;
@@ -60,7 +65,6 @@ function PageBuilderController($scope, toastr) {
     vm.setName = function (name) {
         vm.name = name;
     };
-
     vm.reset = function () {
         vm.components = angular.copy(vm.orig_components);
     }

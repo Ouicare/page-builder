@@ -22,7 +22,9 @@
     "jquery-ui": "^1.12.1",
     "angular-ui-sortable": "^0.15.1",
     "tg-dynamic-directive": "^0.4.0",
-    "angular-toastr": "^2.1.1"
+    "angular-toastr": "^2.1.1",
+    "angular-bootstrap-nav-tree": "*",
+    "isteven-angular-multiselect": "^4.0.0"
   },
   "resolutions": {
     "angular": "~1.5.0"

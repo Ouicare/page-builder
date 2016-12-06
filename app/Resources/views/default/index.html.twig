@@ -71,8 +71,12 @@
                             </div>
                             <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
                                 <div class="panel-body">
-                                    Article
-                                    Author
+                                    <div class="list-group first header" ui-sortable="sortableOptions" ng-model="components.models">
+                                        <a href="#" class="list-group-item active item" ng-repeat="item in components.models track by $index">
+                                            <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i>{{item.title}}</h4>
+                                            <p class="list-group-item-text">{{item.title}}</p>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -92,6 +96,15 @@
             </div>
             <script type="text/ng-template" id="nestable_item.html">
                 <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove($index)">[X]</span> {{ item.title}}</div>
+            </script>
+            <script type="text/ng-template" id="model_item.html">
+                <div    isteven-multi-select
+                        input-model="{{item.data}}"
+                        output-model="item.field"
+                        button-label="name"
+                        item-label="name"
+                        tick-property="ticked">
+                </div>
             </script>
             <script type="text/ng-template" id="nestable_item_1.html">
                 <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove($index)">[X]</span><summernote config="options"><i>Votre texte ici</i></summernote></div>
