@@ -12,10 +12,6 @@ function PageBuilderController($scope, toastr) {
         layouts: [
             {title: '1 Column', text: "1 x 100%", type: 'layout', composants: []},
             {title: '2 Columns', text: "2 x 50%", type: 'layout', left: [], right: []}
-        ],
-        models: [
-            {title: 'Groupement de santé', text: "Groupement de santé", type: 'model', fields: [], data: [{name: "Icone groupement", ticked: true}, {name: "Nom établissement", ticked: true}, {name: "Adresse établissement", ticked: true}]},
-            {title: 'Etablissement de santé', text: "Groupement de santé", type: 'model', fields: [], data: [{name: "Icone groupement", ticked: true}, {name: "Nom groupement", ticked: true}, {name: "Adresse groupement", ticked: true}]}
         ]
     };
     vm.orig_components = angular.copy(vm.components);

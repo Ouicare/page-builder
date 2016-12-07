@@ -1,0 +1,5 @@
+models_popup:
+    path:     /ModelsPopup
+    defaults: { _controller: AppBundle:Models:ModelsPopup }
+    options:
+        expose: true

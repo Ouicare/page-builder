@@ -61,25 +61,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingFour">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                                        Models
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                                <div class="panel-body">
-                                    <div class="list-group first header" ui-sortable="sortableOptions" ng-model="components.models">
-                                        <a href="#" class="list-group-item active item" ng-repeat="item in components.models track by $index">
-                                            <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i>{{item.title}}</h4>
-                                            <p class="list-group-item-text">{{item.title}}</p>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-9 page-builder"  ng-controller="ContentController as content" >
@@ -99,15 +80,15 @@
             </script>
             <script type="text/ng-template" id="model_item.html">
                 <div    isteven-multi-select
-                        input-model="{{item.data}}"
-                        output-model="item.field"
-                        button-label="name"
-                        item-label="name"
-                        tick-property="ticked">
+                input-model="{{item.data}}"
+                output-model="item.field"
+                button-label="name"
+                item-label="name"
+                tick-property="ticked">
                 </div>
             </script>
             <script type="text/ng-template" id="nestable_item_1.html">
-                <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove($index)">[X]</span><div ng-controller="customButtonController"><summernote config="options"><i>Votre texte ici</i></summernote></div></div>
+                <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove($index)">[X]</span><div ng-controller="SummerNoteController"><summernote config="options"></summernote></div></div>
             </script>
             <script type="text/ng-template" id="layout.html">
                 <div class="row">
@@ -144,6 +125,8 @@
                 </div>
                 </div>
                 </div>
+            </script>
+            <script type="text/ng-template" id="models">
             </script>
         {% endverbatim %}
     </div>

@@ -7,17 +7,20 @@
         <link rel="stylesheet" href="{{ asset("assets/vendor/font-awesome/css/font-awesome.min.css")}}"/>
         <link href="{{ asset("assets/vendor/jquery-ui/themes/base/jquery-ui.min.css")}}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset("assets/vendor/angular-toastr/dist/angular-toastr.css")}}" rel="stylesheet" type="text/css"/>
-        <link href="{{ asset("assets/vendor/isteven-angular-multiselect/isteven-multi-select.css")}}" rel="stylesheet" type="text/css"/>
-
+        <link href="{{ asset("assets/vendor//angular-bootstrap-nav-tree/dist/abn_tree.css")}}" rel="stylesheet" type="text/css"/>
     {% block stylesheets %}{% endblock %}
     <script src="{{ asset("assets/vendor/jquery/dist/jquery.min.js")}}"></script>
     <script src="{{ asset("assets/vendor/jquery-ui/jquery-ui.min.js")}}"></script>
     <script src="{{ asset("assets/vendor/bootstrap/dist/js/bootstrap.min.js")}}"></script>
     <script src="{{ asset("assets/vendor/angular/angular.min.js")}}"></script>
     <script src="{{ asset("assets/vendor/angular-animate/angular-animate.min.js")}}"></script>
-    <script src="{{ asset("assets/vendor/isteven-angular-multiselect/isteven-multi-select.js")}}"></script>
     <script src="{{ asset("assets/vendor/summernote/dist/summernote.min.js")}}"></script>
     <script src="{{ asset("assets/vendor/angular-summernote/dist/angular-summernote.min.js")}}"></script>
+    <script src="{{ asset("assets/vendor/angular-bootstrap-nav-tree/dist/abn_tree_directive.js")}}"></script>
+    <script src="{{ asset("assets/vendor/summernote/dist/summernote.min.js")}}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
 
 </head>
 <body>
@@ -29,8 +32,9 @@
 <script src="{{ asset("js/controllers/page.builder.controller.js")}}"></script>
 <script src="{{ asset("js/controllers/content.controller.js")}}"></script>
 <script src="{{ asset("js/controllers/menu.controller.js")}}"></script>
-<script src="{{ asset("js/controllers/customButtonController.js")}}"></script>
-<script src="{{ asset("js/controllers/plug.js")}}"></script>
+<script src="{{ asset("js/controllers/SummerNoteController.js")}}"></script>
+<script src="{{ asset("js/controllers/ModelsController.js")}}"></script>
+<script src="{{ asset("js/summernote/summernote.models.module.js")}}"></script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>
