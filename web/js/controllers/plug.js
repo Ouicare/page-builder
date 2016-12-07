@@ -42,13 +42,16 @@ var Models = function (context) {
 
         // create button
         var button = ui.button({
-            className: 'note-btn btn btn-default btn-sm',
-            contents: 'Models',
+            contents: '<i class="fa fa-child"/> Models',
+            tooltip: 'hello',
             click: function (e) {
                 console.log("amin");
+                var node = document.createElement("div");
+                // @param {Node} node
+                context.invoke('insertNode',node);
                 //  context.invoke('editor.bold'); // invoke bold method of a module named editor
                 //this.showModelsDialog(context);
-                ui.showDialog(self.$dialog);
+                //ui.showDialog(self.$dialog);
             }
         });
         // generate jQuery element from button instance.
