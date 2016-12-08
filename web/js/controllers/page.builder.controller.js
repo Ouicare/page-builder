@@ -3,6 +3,11 @@ app.controller('PageBuilderController', PageBuilderController);
 function PageBuilderController($scope, toastr) {
     var vm = $scope;
     vm.items = [];
+    vm.result = {
+        category: '',
+        items: []
+    }
+    vm.modelCategories = [{id: 1, name: 'Consultation'}, {id: 2, name: 'Prescription'}, {id: 3, name: 'Courier'}];
     vm.name = 'The page builder';
     vm.components = {
         headers: [
@@ -48,11 +53,7 @@ function PageBuilderController($scope, toastr) {
     vm.model = [];
     $scope.sortableOptions = {
         update: function (e, ui) {
-            console.log(vm.items);
-            /*if (!ui.item.sortable.received && ui.item.sortable.droptargetModel[ui.item.sortable.dropindex] && ui.item.sortable.droptargetModel[ui.item.sortable.dropindex].type === "layout" && ui.item.sortable.sourceModel[ui.item.sortable.index].type === "layout") {
-             toastr.error("Layout within layout are not allowed", 'error');
-             ui.item.sortable.cancel();
-             }*/
+            console.log(vm.result.items);
             vm.reset();
         },
         receive: function (e, ui) {
@@ -89,7 +90,7 @@ function PageBuilderController($scope, toastr) {
             console.log(item.title);
             item.composants.splice(index, 1);
         } else {
-            $scope.items.splice(index, 1);
+            $scope.result.items.splice(index, 1);
         }
 
     };
@@ -101,6 +102,9 @@ function PageBuilderController($scope, toastr) {
     };
     vm.reset = function () {
         vm.components = angular.copy(vm.orig_components);
+    }
+    vm.select = function () {
+        console.log(vm.result);
     }
 }
 
