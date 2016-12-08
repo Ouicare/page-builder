@@ -104,7 +104,7 @@
                 </div>
             </div>
             <script type="text/ng-template" id="nestable_item.html">
-                <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove($index)">[X]</span> {{ item.title}}</div>
+                <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove(item, $index)">[X]</span> {{ composant.title}}</div>
             </script>
             <script type="text/ng-template" id="model_item.html">
                 <div    isteven-multi-select
@@ -116,12 +116,16 @@
                 </div>
             </script>
             <script type="text/ng-template" id="nestable_item_1.html">
-                <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove($index)">[X]</span><div ng-controller="SummerNoteController"><summernote config="options"></summernote></div></div>
+                <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove(item, $index)">[X]</span><div ng-controller="SummerNoteController"><summernote config="options"></summernote></div></div>
             </script>
             <script type="text/ng-template" id="graphical_item.html">
-           <table class="table table-striped">
+            <table class="table table-striped">
               <thead class="thead-inverse">
                 <tr>
+                    <div class="pull-right">
+                            <div class="handle-move"><i class="fa fa-arrows"></i></div>
+                            <div class="handle-remove" ng-click="remove(item, $index)" style="cursor:pointer"><i class="fa fa-times"></i></div>
+                     </div>
                     <h2>{{composant.title}}</h2>
                     <span>{{composant.text}}</span>
                 </tr>

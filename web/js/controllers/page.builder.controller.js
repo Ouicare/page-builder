@@ -84,8 +84,14 @@ function PageBuilderController($scope, toastr) {
         }
         return null;
     };
-    vm.remove = function (index) {
-        $scope.items.splice(index, 1);
+    vm.remove = function (item, index) {
+        if (item) {
+            console.log(item.title);
+            item.composants.splice(index, 1);
+        } else {
+            $scope.items.splice(index, 1);
+        }
+
     };
     vm.getName = function () {
         return vm.name;

@@ -298,3 +298,10 @@
     max-height: 22px;
     max-width:22px;
 }
+
+.controls{
+    display:inline-block;
+}
+.handle-move, .handle-remove{
+    max-width: 60px;
+}
