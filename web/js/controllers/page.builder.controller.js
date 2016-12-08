@@ -12,6 +12,36 @@ function PageBuilderController($scope, toastr) {
         layouts: [
             {title: '1 Column', text: "1 x 100%", type: 'layout', composants: []},
             {title: '2 Columns', text: "2 x 50%", type: 'layout', left: [], right: []}
+        ],
+        graphicals: [
+            {
+                title: 'Antecedents', text: "liste des antécédents", type: 'table',
+                data: [
+                    {name: "Acte", ticked: false},
+                    {name: "start Date", ticked: false},
+                    {name: "End Date", ticked: false}
+                ],
+                fields: []
+            },
+            {
+                title: 'Consultations', text: "liste des Consultations", type: 'table',
+                data: [
+                    {name: "type", ticked: false},
+                    {name: "etablissement", ticked: false},
+                    {name: "date", ticked: false},
+                    {name: "description", ticked: false}
+                ],
+                fields: []
+            },
+            {
+                title: 'Prescriptions', text: "liste des Prescriptions", type: 'table',
+                data: [
+                    {name: "medicament", ticked: false},
+                    {name: "dose", ticked: false},
+                    {name: "fréquences", ticked: false}
+                ],
+                fields: []
+            },
         ]
     };
     vm.orig_components = angular.copy(vm.components);
@@ -48,6 +78,8 @@ function PageBuilderController($scope, toastr) {
                 return 'layout.html';
             } else if (item.type === "model") {
                 return 'model_item.html';
+            } else if (item.type === "table") {
+                return 'graphical_item.html';
             }
         }
         return null;

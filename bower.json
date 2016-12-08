@@ -1,32 +1,33 @@
 {
-  "name": "page-builder",
-  "description": "Page Builder",
-  "main": "app.js",
-  "authors": [
-    "marrouchi <anismarrouchi@hotmail.com>"
-  ],
-  "license": "ISC",
-  "homepage": "",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "angular": "angularjs#^1.5.8",
-    "bootstrap": "^3.3.7",
-    "font-awesome": "fontawesome#^4.7.0",
-    "angular-summernote": "^0.8.1",
-    "jquery-ui": "^1.12.1",
-    "angular-ui-sortable": "^0.15.1",
-    "tg-dynamic-directive": "^0.4.0",
-    "angular-toastr": "^2.1.1",
-    "angular-bootstrap-nav-tree": "*",
-    "angular-animate": "^1.5.9"
-  },
-  "resolutions": {
-    "angular": "~1.5.0"
-  }
+    "name": "page-builder",
+    "description": "Page Builder",
+    "main": "app.js",
+    "authors": [
+        "marrouchi <anismarrouchi@hotmail.com>"
+    ],
+    "license": "ISC",
+    "homepage": "",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular": "angularjs#^1.5.8",
+        "bootstrap": "^3.3.7",
+        "font-awesome": "fontawesome#^4.7.0",
+        "angular-summernote": "^0.8.1",
+        "jquery-ui": "^1.12.1",
+        "angular-ui-sortable": "^0.15.1",
+        "tg-dynamic-directive": "^0.4.0",
+        "angular-toastr": "^2.1.1",
+        "angular-bootstrap-nav-tree": "*",
+        "angular-animate": "^1.5.9",
+        "isteven-angular-multiselect": "^4.0.0"
+    },
+    "resolutions": {
+        "angular": "~1.5.0"
+    }
 }

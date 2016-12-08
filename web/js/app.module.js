@@ -1,1 +1,1 @@
-var app = angular.module('app', ['ui.sortable', 'summernote', 'tg.dynamicDirective', 'ngAnimate', 'toastr', 'angularBootstrapNavTree']);
+var app = angular.module('app', ['ui.sortable', 'summernote', 'tg.dynamicDirective', 'ngAnimate', 'toastr', 'angularBootstrapNavTree', 'isteven-multi-select']);

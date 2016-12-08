@@ -47,6 +47,34 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingGraphicals">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseGraphicals" aria-expanded="false" aria-controls="collapseGraphicals">
+                                        Composants graphique
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseGraphicals" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingGraphicals">
+                                <div class="panel-body">
+                                    <div class="list-group first header" ui-sortable="sortableOptions" ng-model="components.graphicals">
+                                        <a href="#" class="list-group-item active item" ng-repeat="item in components.graphicals track by $index">
+                                            <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i>{{item.title}}</h4>
+
+                                            <div isteven-multi-select
+                                                 input-model="item.data"
+                                                 output-model="item.fields"
+                                                 button-label="name"
+                                                 item-label="name"
+                                                 tick-property="ticked">
+                                            </div>
+
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
@@ -89,6 +117,21 @@
             </script>
             <script type="text/ng-template" id="nestable_item_1.html">
                 <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove($index)">[X]</span><div ng-controller="SummerNoteController"><summernote config="options"></summernote></div></div>
+            </script>
+            <script type="text/ng-template" id="graphical_item.html">
+           <table class="table table-striped">
+              <thead class="thead-inverse">
+                <tr>
+                    <h2>{{item.title}}</h2>
+                    <span>{{item.text}}</span>
+                </tr>
+                <tr>
+                    <th ng-repeat ="data in item.fields">{{data.name}}</th>
+            </tr>
+                </head>
+                <body>
+                </body>
+            </table>
             </script>
             <script type="text/ng-template" id="layout.html">
                 <div class="row">
