@@ -49,10 +49,10 @@ function PageBuilderController($scope, toastr) {
     $scope.sortableOptions = {
         update: function (e, ui) {
             console.log(vm.items);
-            if (!ui.item.sortable.received && ui.item.sortable.droptargetModel[ui.item.sortable.dropindex] && ui.item.sortable.droptargetModel[ui.item.sortable.dropindex].type === "layout" && ui.item.sortable.sourceModel[ui.item.sortable.index].type === "layout") {
-                toastr.success("Layout within layout are not allowed", 'error');
-                ui.item.sortable.cancel();
-            }
+            /*if (!ui.item.sortable.received && ui.item.sortable.droptargetModel[ui.item.sortable.dropindex] && ui.item.sortable.droptargetModel[ui.item.sortable.dropindex].type === "layout" && ui.item.sortable.sourceModel[ui.item.sortable.index].type === "layout") {
+             toastr.error("Layout within layout are not allowed", 'error');
+             ui.item.sortable.cancel();
+             }*/
             vm.reset();
         },
         receive: function (e, ui) {
