@@ -1,8 +1,9 @@
+app_modelentity:
+    resource: "@AppBundle/Resources/config/routing/modelentity.yml"
+    prefix:   /modelentity
+
 models_popup:
     path:     /ModelsPopup
     defaults: { _controller: AppBundle:Models:ModelsPopup }
     options:
         expose: true
-default_add-model-entity:
-    path:     /modelEntity
-    defaults: { _controller: AppBundle:Default:newModel }

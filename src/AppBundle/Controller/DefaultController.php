@@ -21,39 +21,4 @@ class DefaultController extends Controller {
         ]);
     }
 
-    /**
-     * Finds and displays list of all antecedents.
-     */
-    public function newModelAction(Request $request) {
-        $entity = new ModelEntity();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-        }
-
-        return $this->render('AppBundle:Default:newModel.html.twig', array('entity' => $entity,
-                    'form' => $form->createView()));
-    }
-
-    /**
-     * Creates a form to create a Discipline entity.
-     *
-     * @param Discipline $entity The entity
-     *
-     * @return Form The form
-     */
-    private function createCreateForm(ModelEntity $entity) {
-        $form = $this->createForm(new ModelEntityType(), $entity, array(
-            'action' => $this->generateUrl('default_add-model-entity'),
-            'method' => 'POST',
-        ));
-
-
-        return $form;
-    }
-
 }

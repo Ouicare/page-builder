@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modelentity creation</h1>
+
+    {{ form_start(form) }}
+    {{ form_label(form.name) }}
+    {{ form_widget(form.name) }}<br>
+    {{ form_label(form.description) }}
+    {{ form_widget(form.description) }}<br>
+    {{ form_label(form.type) }}
+    {{ form_widget(form.type) }} <br>
+    <label> Entité :</label>
+    <select>
+        <option value="patient">Patient</option>
+        <option value="measure">Mesure</option>
+        <option value="consultation">Consultation</option>
+        <option value="antecedent">Antecedent</option>
+    </select> <br>
+    {{ form_label(form.attributes) }}
+    {{ form_widget(form.attributes) }} <br>
+    <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('modelentity_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

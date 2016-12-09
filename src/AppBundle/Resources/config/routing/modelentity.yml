@@ -1,0 +1,24 @@
+modelentity_index:
+    path:     /
+    defaults: { _controller: "AppBundle:ModelEntity:index" }
+    methods:  GET
+
+modelentity_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:ModelEntity:show" }
+    methods:  GET
+
+modelentity_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:ModelEntity:new" }
+    methods:  [GET, POST]
+
+modelentity_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:ModelEntity:edit" }
+    methods:  [GET, POST]
+
+modelentity_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:ModelEntity:delete" }
+    methods:  DELETE
