@@ -1,15 +1,13 @@
 app.controller('PageBuilderController', PageBuilderController);
-
 function PageBuilderController($scope, toastr) {
     var vm = $scope;
-    vm.items = [];
     vm.result = {
         category: '',
         items: []
     }
-    vm.modelCategories = [{id: 1, name: 'Consultation'}, {id: 2, name: 'Prescription'}, {id: 3, name: 'Courier'}];
     vm.name = 'The page builder';
     vm.components = {
+        categories: ['consultation', 'prescription', 'email'],
         headers: [
             {title: 'Header 1', locked: true, type: 'header', text: ''},
             {title: 'Header 2', locked: true, type: 'header', text: ''}
@@ -73,15 +71,6 @@ function PageBuilderController($scope, toastr) {
          based on the provided item
          */
         if (item) {
-//            if (item.type === "header") {
-//                return 'nestable_item_1.html';
-//            } else if (item.type === "layout") {
-//                return 'layout.html';
-//            } else if (item.type === "model") {
-//                return 'model_item.html';
-//            } else if (item.type === "table") {
-//                return 'graphical_item.html';
-//            }
             return "templates/" + item.type + ".html";
         }
         return null;
