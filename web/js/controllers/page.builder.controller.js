@@ -1,5 +1,5 @@
 app.controller('PageBuilderController', PageBuilderController);
-function PageBuilderController($scope, toastr) {
+function PageBuilderController($scope, toastr, $http) {
     var vm = $scope;
     vm.result = {
         category: '',
@@ -95,6 +95,15 @@ function PageBuilderController($scope, toastr) {
     }
     vm.save = function () {
         console.log(vm.result);
+        $http.post(Routing.generate('api_post_output_model'),
+                {
+                    data: vm.result
+                }
+        ).success(function (data, status, headers, config) {
+
+        }).error(function (error, status, headers, config) {
+
+        });
     }
 }
 
