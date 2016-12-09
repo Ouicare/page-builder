@@ -83,9 +83,8 @@
                     <div class="page-header">
                         <div class="form-group">
                             <label for="category">Type modéle</label>
-                            <select ng-model="category" class="form-control" id="category">
+                            <select class="form-control" id="category" ng-model="result.category">
                                 <option ng-repeat="option in modelCategories" ng-value="option.id">{{option.name}}</option>
-
                             </select>
                         </div>
                     </div>
@@ -99,6 +98,7 @@
                         </div>
                     </div>
                 </div>
+                <button type="button" ng-click="save()" class="btn btn-success">Success</button>
             </div>
             <script type="text/ng-template" id="nestable_item.html">
                 <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove(item, $index)">[X]</span> {{ composant.title}}</div>
@@ -113,7 +113,7 @@
                 </div>
             </script>
             <script type="text/ng-template" id="nestable_item_1.html">
-                <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove(item, $index)">[X]</span><div ng-controller="SummerNoteController"><summernote config="options"></summernote></div></div>
+                <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove(item, $index)">[X]</span><div ng-controller="SummerNoteController"><summernote ng-model="composant.text" config="options"></summernote></div></div>
             </script>
             <script type="text/ng-template" id="graphical_item.html">
                 <table class="table table-striped">

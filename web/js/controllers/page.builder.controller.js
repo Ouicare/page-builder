@@ -11,8 +11,8 @@ function PageBuilderController($scope, toastr) {
     vm.name = 'The page builder';
     vm.components = {
         headers: [
-            {title: 'Header 1', locked: true, type: 'header'},
-            {title: 'Header 2', locked: true, type: 'header'}
+            {title: 'Header 1', locked: true, type: 'header', text: ''},
+            {title: 'Header 2', locked: true, type: 'header', text: ''}
         ],
         layouts: [
             {title: '1 Column', text: "1 x 100%", type: 'layout', composants: []},
@@ -103,7 +103,7 @@ function PageBuilderController($scope, toastr) {
     vm.reset = function () {
         vm.components = angular.copy(vm.orig_components);
     }
-    vm.select = function () {
+    vm.save = function () {
         console.log(vm.result);
     }
 }
