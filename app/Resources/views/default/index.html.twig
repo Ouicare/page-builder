@@ -7,6 +7,15 @@
         </div>
         {% verbatim %}
             <div class="row" ng-controller="PageBuilderController as builder">
+                <div class="page-header">
+                    <div class="form-group">
+                        <label for="category">Type modéle</label>
+                        <select ng-model="category" class="form-control" id="category">
+                            <option ng-repeat="option in modelCategories" ng-value="option.id">{{option.name}}</option>
+
+                        </select>
+                    </div>
+                </div>
                 <div class="col-lg-3" ng-controller="MenuController as menu">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
@@ -119,23 +128,23 @@
                 <div><i class="fa fa-arrows"></i><span class="danger" ng-click="remove(item, $index)">[X]</span><div ng-controller="SummerNoteController"><summernote config="options"></summernote></div></div>
             </script>
             <script type="text/ng-template" id="graphical_item.html">
-            <table class="table table-striped">
-              <thead class="thead-inverse">
+                <table class="table table-striped">
+                <thead class="thead-inverse">
                 <tr>
-                    <div class="pull-right">
-                            <div class="handle-move"><i class="fa fa-arrows"></i></div>
-                            <div class="handle-remove" ng-click="remove(item, $index)" style="cursor:pointer"><i class="fa fa-times"></i></div>
-                     </div>
-                    <h2>{{composant.title}}</h2>
-                    <span>{{composant.text}}</span>
+                <div class="pull-right">
+                <div class="handle-move"><i class="fa fa-arrows"></i></div>
+                <div class="handle-remove" ng-click="remove(item, $index)" style="cursor:pointer"><i class="fa fa-times"></i></div>
+                </div>
+                <h2>{{composant.title}}</h2>
+                <span>{{composant.text}}</span>
                 </tr>
                 <tr>
-                    <th ng-repeat ="data in composant.fields">{{data.name}}</th>
-            </tr>
+                <th ng-repeat ="data in composant.fields">{{data.name}}</th>
+                </tr>
                 </head>
                 <body>
                 </body>
-            </table>
+                </table>
             </script>
             <script type="text/ng-template" id="layout.html">
                 <div class="row">
