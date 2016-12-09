@@ -91,8 +91,8 @@
                     </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading"> <h3 class="panel-title">Panel title</h3> </div>
-                        <div id="sortable" class="apps-container panel-body" ui-sortable="sortableOptions" ng-model="items">
-                            <div ng-repeat="item in items track by $index" class="item">
+                        <div id="sortable" class="apps-container panel-body" ui-sortable="sortableOptions" ng-model="result.items">
+                            <div ng-repeat="item in result.items track by $index" class="item">
                                 <tg-dynamic-directive ng-if="item.type = 'layout'" ng-model="item" tg-dynamic-directive-view="getView">
                                 </tg-dynamic-directive>
                             </div>
