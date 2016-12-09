@@ -1,0 +1,4 @@
+models_ :
+  type: rest
+  resource:     "AppBundle:ApiModels"
+  name_prefix:  api_
