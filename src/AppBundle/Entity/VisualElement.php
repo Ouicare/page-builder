@@ -1,6 +1,6 @@
 <?php
 
-namespace SpineSys\ModelBundle\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

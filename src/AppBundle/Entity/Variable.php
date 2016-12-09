@@ -1,6 +1,6 @@
 <?php
 
-namespace SpineSys\ModelBundle\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class Variable
-{
+class Variable {
+
     /**
      * @var integer
      *
@@ -35,14 +35,12 @@ class Variable
      */
     private $expression;
 
-
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -53,8 +51,7 @@ class Variable
      *
      * @return Variable
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -65,8 +62,7 @@ class Variable
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -77,8 +73,7 @@ class Variable
      *
      * @return Variable
      */
-    public function setExpression($expression)
-    {
+    public function setExpression($expression) {
         $this->expression = $expression;
 
         return $this;
@@ -89,9 +84,8 @@ class Variable
      *
      * @return string
      */
-    public function getExpression()
-    {
+    public function getExpression() {
         return $this->expression;
     }
-}
 
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace SpineSys\ModelBundle\Entity\Traits;
+namespace AppBundle\Entity\Traits;
 
 trait ModelCategory {
 

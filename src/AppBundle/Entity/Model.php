@@ -1,10 +1,10 @@
 <?php
 
-namespace SpineSys\ModelBundle\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use SpineSys\ModelBundle\Entity\Traits\ModelType;
-use SpineSys\ModelBundle\Entity\Traits\ModelCategory;
+use AppBundle\Entity\Traits\ModelType;
+use AppBundle\Entity\Traits\ModelCategory;
 
 /**
  * Model
@@ -54,24 +54,6 @@ use ModelType;
      * @ORM\Column(name="text", type="text")
      */
     private $text;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="\SpineSys\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id",onDelete="SET NULL")
-     */
-    private $user;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="\SpineSys\HealthFacilityBundle\Entity\HealthFacilityGroup")
-     * @ORM\JoinColumn(name="health_facility_group_id", referencedColumnName="id",onDelete="SET NULL")
-     */
-    private $healthFacilityGroup;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="\SpineSys\HealthFacilityBundle\Entity\HealthFacility")
-     * @ORM\JoinColumn(name="health_facility_id", referencedColumnName="id",onDelete="SET NULL")
-     */
-    private $healthFacility;
 
     /**
      * Get id

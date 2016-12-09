@@ -1,6 +1,6 @@
 <?php
 
-namespace SpineSys\ModelBundle\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class ModelEntity
-{
+class ModelEntity {
+
     /**
      * @var integer
      *
@@ -35,14 +35,12 @@ class ModelEntity
      */
     private $attributes;
 
-
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -53,8 +51,7 @@ class ModelEntity
      *
      * @return ModelEntity
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -65,8 +62,7 @@ class ModelEntity
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -77,8 +73,7 @@ class ModelEntity
      *
      * @return ModelEntity
      */
-    public function setAttributes($attributes)
-    {
+    public function setAttributes($attributes) {
         $this->attributes = $attributes;
 
         return $this;
@@ -89,9 +84,8 @@ class ModelEntity
      *
      * @return array
      */
-    public function getAttributes()
-    {
+    public function getAttributes() {
         return $this->attributes;
     }
-}
 
+}
