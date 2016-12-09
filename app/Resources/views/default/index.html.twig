@@ -7,16 +7,9 @@
         </div>
         {% verbatim %}
             <div class="row" ng-controller="PageBuilderController as builder">
-                <div class="page-header">
-                    <div class="form-group">
-                        <label for="category">Type modéle</label>
-                        <select ng-model="category" class="form-control" id="category">
-                            <option ng-repeat="option in modelCategories" ng-value="option.id">{{option.name}}</option>
 
-                        </select>
-                    </div>
-                </div>
                 <div class="col-lg-3" ng-controller="MenuController as menu">
+
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne1">
@@ -84,23 +77,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTwo">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Footer
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body">
-                                    Footers
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-9 page-builder"  ng-controller="ContentController as content" >
+                    <div class="page-header">
+                        <div class="form-group">
+                            <label for="category">Type modéle</label>
+                            <select ng-model="category" class="form-control" id="category">
+                                <option ng-repeat="option in modelCategories" ng-value="option.id">{{option.name}}</option>
+
+                            </select>
+                        </div>
+                    </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading"> <h3 class="panel-title">Panel title</h3> </div>
                         <div id="sortable" class="apps-container panel-body" ui-sortable="sortableOptions" ng-model="items">
