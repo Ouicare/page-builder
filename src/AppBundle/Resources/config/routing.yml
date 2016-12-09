@@ -3,3 +3,6 @@ models_popup:
     defaults: { _controller: AppBundle:Models:ModelsPopup }
     options:
         expose: true
+default_add-model-entity:
+    path:     /modelEntity
+    defaults: { _controller: AppBundle:Default:newModel }
