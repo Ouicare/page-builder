@@ -73,15 +73,16 @@ function PageBuilderController($scope, toastr) {
          based on the provided item
          */
         if (item) {
-            if (item.type === "header") {
-                return 'nestable_item_1.html';
-            } else if (item.type === "layout") {
-                return 'layout.html';
-            } else if (item.type === "model") {
-                return 'model_item.html';
-            } else if (item.type === "table") {
-                return 'graphical_item.html';
-            }
+//            if (item.type === "header") {
+//                return 'nestable_item_1.html';
+//            } else if (item.type === "layout") {
+//                return 'layout.html';
+//            } else if (item.type === "model") {
+//                return 'model_item.html';
+//            } else if (item.type === "table") {
+//                return 'graphical_item.html';
+//            }
+            return "templates/" + item.type + ".html";
         }
         return null;
     };
