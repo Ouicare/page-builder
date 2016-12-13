@@ -2,6 +2,7 @@ app.controller('PageBuilderController', PageBuilderController);
 function PageBuilderController($scope, toastr, $http) {
     var vm = $scope;
     vm.result = {
+        name: '',
         category: '',
         type: '',
         items: []
@@ -71,13 +72,12 @@ function PageBuilderController($scope, toastr, $http) {
         console.log(vm.result);
         $http.post(Routing.generate('api_post_output_model'),
                 {
-                    items: vm.result.items,
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                    data: vm.result,
                 }
         ).success(function (data, status, headers, config) {
-
+            toastr.success('Success', "Modèle enregistré");
         }).error(function (error, status, headers, config) {
-
+            toastr.error('Error', error);
         });
     }
 }

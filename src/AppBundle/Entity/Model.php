@@ -49,11 +49,11 @@ use ModelType;
     private $category;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="text", type="text")
+     * @ORM\Column(name="content", type="array")
      */
-    private $text;
+    private $content;
 
     /**
      * Get id
@@ -136,26 +136,28 @@ use ModelType;
         return;
     }
 
+
     /**
-     * Set text
+     * Set content
      *
-     * @param string $text
+     * @param array $content
      *
      * @return Model
      */
-    public function setText($text) {
-        $this->text = $text;
+    public function setContent($content)
+    {
+        $this->content = $content;
 
         return $this;
     }
 
     /**
-     * Get text
+     * Get content
      *
-     * @return string
+     * @return array
      */
-    public function getText() {
-        return $this->text;
+    public function getContent()
+    {
+        return $this->content;
     }
-
 }
