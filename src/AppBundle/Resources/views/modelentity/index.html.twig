@@ -21,25 +21,29 @@
                     <td>{{ modelEntity.title }}</td>
                     <td>{{ modelEntity.description }}</td>
                     <td>{{ modelEntity.type }}</td>
-                    <td>{% if modelEntity.attributes %}{{ modelEntity.attributes|join(', ') }}{% endif %}</td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('modelentity_show', { 'id': modelEntity.id }) }}">show</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('modelentity_edit', { 'id': modelEntity.id }) }}">edit</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                    <td>{% if modelEntity.attributes %}
+                        {% for attributes in modelEntity.attributes %}
+                            {{ attributes| join(': ') }}<br />
+                        {% endfor %}
+                        {% endif %}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('modelentity_show', { 'id': modelEntity.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('modelentity_edit', { 'id': modelEntity.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('modelentity_new') }}">Create a new modelEntity</a>
-        </li>
-    </ul>
-{% endblock %}
+                <ul>
+                    <li>
+                        <a href="{{ path('modelentity_new') }}">Create a new modelEntity</a>
+                    </li>
+                </ul>
+                {% endblock %}

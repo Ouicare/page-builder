@@ -50,12 +50,11 @@ use ModelCategory;
         foreach ($modelEntities as $value) {
             $data = array();
             foreach ($value->getAttributes() as $attr) {
-                $data[] = array('name' => $attr, 'ticked' => false);
+                $data[] = array_merge($attr, array('ticked' => false));
             }
             $value->setAttributes($data);
             $result['graphicals'][] = $value;
         }
-
         $view = $this->view($result, 200)->setFormat("json");
         return $this->handleView($view);
     }

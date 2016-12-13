@@ -37,6 +37,7 @@ var Models = function (context) {
             click: function (e) {
                 $.get(path)
                         .done(function (data) {
+                            console.log(data);
                             angular.element(document).injector().invoke(function ($compile) {
                                 var obj = $('.content');
                                 var scope = obj.scope();

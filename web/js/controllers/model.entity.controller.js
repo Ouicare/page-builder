@@ -23,10 +23,9 @@ function ModelEntityController($scope,$http,toastr) {
     vm.save = function(){
         console.log(vm.entity);
         $http.post(Routing.generate('api_entity_model_post'),
-        {data: vm.entity},{headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+        {data: vm.entity}
                 ).success(function (data, status, headers, config) {
-            console.log(data);
-            toastr.success('Success', "Modèle enregistré");
+           toastr.success('Success', "Modèle enregistré");
         }).error(function (error, status, headers, config) {
             toastr.error('Error', error);
         });

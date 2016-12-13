@@ -12,7 +12,7 @@ app.controller('ModelsController', function ($scope, $http) {
         $scope.result = "";
         if (branch.level == 2) {
             console.log(branch);
-            $scope.result = "[" + branch.data.parent + ">" + branch.label + "]";
+            $scope.result = "{{" + branch.data.parent + "." + branch.labels + "}}";
         }
         console.log($scope.result);
     };

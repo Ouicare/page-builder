@@ -17,7 +17,7 @@
                         <option ng-repeat="option in modelAttributes">{{option}}</option>
                     </select>
                     label :<input ng-model="attribute.label">
-                    <button class="btn btn-danger btn-sm" ng-click="removeAttribute(index)"><i class="fa fa-plus"></i></button> <br>
+                    <button class="btn btn-danger btn-sm" ng-click="removeAttribute(index)"><i class="fa fa-minus"></i></button> <br>
 
                 </div>
             {% endverbatim %}
@@ -27,7 +27,7 @@
 
             <ul>
                 <li>
-                    <a href="#{#{{ path('modelentity_index') }}#}">Back to the list</a>
+                    <a href="{{ path('modelentity_index') }}">Back to the list</a>
                 </li>
             </ul>
         </div>
