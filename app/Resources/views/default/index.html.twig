@@ -7,20 +7,7 @@
         </div>
         {% verbatim %}
             <div class="row" ng-controller="PageBuilderController as builder">
-                <div class="page-header col-md-12">
-                    <div class="form-group col-md-6">
-                        <label for="category">Catégorie</label>
-                        <select class="form-control" id="category" ng-model="result.category">
-                            <option ng-repeat="option in components.categories" ng-value="option">{{option}}</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="category">Type</label>
-                        <select class="form-control" id="category" ng-model="result.type">
-                            <option ng-repeat="option in components.types" ng-value="option">{{option}}</option>
-                        </select>
-                    </div>
-                </div>
+
                 <div class="col-lg-3" ng-controller="MenuController as menu">
 
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -36,7 +23,7 @@
                                 <div class="panel-body">
                                     <div class="list-group first layout" ui-sortable="sortableOptions" ng-model="components.layouts">
                                         <a href="#" class="list-group-item active item" ng-repeat="item in components.layouts track by $index">
-                                            <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i> {{item.name}}</h4>
+                                            <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i> {{item.title}}</h4>
                                             <p class="list-group-item-text"><i class="fa fa-th-list"></i> {{item.description}}</p>
                                         </a>
                                     </div>
@@ -55,8 +42,8 @@
                                 <div class="panel-body">
                                     <div class="list-group first header" ui-sortable="sortableOptions" ng-model="components.headers">
                                         <a href="#" class="list-group-item active item" ng-repeat="item in components.headers track by $index">
-                                            <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i>{{item.name}}</h4>
-                                            <p class="list-group-item-text">{{item.description}}</p>
+                                            <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i>{{item.title}}</h4>
+                                            <p class="list-group-item-text">{{item.title}}</p>
                                         </a>
                                     </div>
                                 </div>
@@ -75,13 +62,14 @@
                                 <div class="panel-body">
                                     <div class="list-group first header" ui-sortable="sortableOptions" ng-model="components.graphicals">
                                         <a href="#" class="list-group-item active item" ng-repeat="item in components.graphicals track by $index">
-                                            <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i>{{item.name}}</h4>
+                                            <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i>{{item.title}}</h4>
 
                                             <div isteven-multi-select
                                                  input-model="item.attributes"
                                                  output-model="item.fields"
                                                  button-label="name"
-                                                 item-label="name">
+                                                 item-label="name"
+                                                 tick-property="ticked">
                                             </div>
 
                                         </a>
@@ -91,8 +79,15 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-9 page-builder"  ng-controller="ContentController as content" >
+                    <div class="page-header">
+                        <div class="form-group">
+                            <label for="category">Type modéle</label>
+                            <select class="form-control" id="category" ng-model="result.category">
+                                <option ng-repeat="option in components.categories" ng-value="option">{{option}}</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading"> <h3 class="panel-title">Panel title</h3> </div>
                         <div id="sortable" class="apps-container panel-body" ui-sortable="sortableOptions" ng-model="result.items">

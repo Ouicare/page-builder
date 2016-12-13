@@ -6,6 +6,8 @@ use AppBundle\Entity\Traits\ModelCategory;
 use AppBundle\Entity\Traits\ModelType;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Classes\Layout;
+use AppBundle\Classes\Header;
 
 class ApiModelsController extends FOSRestController {
 
@@ -29,12 +31,13 @@ use ModelCategory;
         // headers
         $headers = $em->getRepository('AppBundle:VisualElement')->findByType('header');
         foreach ($headers as $value) {
-            $result['headers'][] = $value;
+            $result['headers'][] = new Header($value);
         }
+
         // layout
         $layouts = $em->getRepository('AppBundle:VisualElement')->findByType('layout');
         foreach ($layouts as $value) {
-            $result['layouts'][] = $value;
+            $result['layouts'][] = new Layout($value);
         }
         // composant graphique
 

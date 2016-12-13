@@ -24,9 +24,9 @@ class VisualElement {
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $name;
+    private $title;
 
     /**
      * @var string
@@ -59,28 +59,6 @@ class VisualElement {
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return VisualElement
-     */
-    public function setName($name) {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName() {
-        return $this->name;
-    }
-
-    /**
      * Set content
      *
      * @param string $content
@@ -102,7 +80,6 @@ class VisualElement {
         return $this->content;
     }
 
-
     /**
      * Set description
      *
@@ -110,8 +87,7 @@ class VisualElement {
      *
      * @return VisualElement
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -122,8 +98,7 @@ class VisualElement {
      *
      * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -134,8 +109,7 @@ class VisualElement {
      *
      * @return VisualElement
      */
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
 
         return $this;
@@ -146,8 +120,32 @@ class VisualElement {
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
+    }
+
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return VisualElement
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 }
