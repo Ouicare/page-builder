@@ -71,7 +71,8 @@ function PageBuilderController($scope, toastr, $http) {
         console.log(vm.result);
         $http.post(Routing.generate('api_post_output_model'),
                 {
-                    data: vm.result
+                    items: vm.result.items,
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                 }
         ).success(function (data, status, headers, config) {
 

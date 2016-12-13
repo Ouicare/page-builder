@@ -60,8 +60,8 @@ use ModelCategory;
         $trans = $this->get('translator');
         $response = array();
         if ($request->getMethod() == 'POST') {
-            //  $result = $request->request->get("data");
-            dump($request);
+            $data = $request->request->get("items");
+            dump($request->request);
             die();
         }
         $view = $this->view($response, 200)->setFormat("json");
