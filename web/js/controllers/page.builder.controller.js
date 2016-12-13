@@ -3,52 +3,19 @@ function PageBuilderController($scope, toastr, $http) {
     var vm = $scope;
     vm.result = {
         category: '',
+        type: '',
         items: []
     }
     vm.name = 'The page builder';
-    vm.components = {
-        categories: ['consultation', 'prescription', 'email'],
-        headers: [
-            {title: 'Header 1', locked: true, type: 'header', text: ''},
-            {title: 'Header 2', locked: true, type: 'header', text: ''}
-        ],
-        layouts: [
-            {title: '1 Column', text: "1 x 100%", type: 'layout', composants: []},
-            {title: '2 Columns', text: "2 x 50%", type: 'layout', left: [], right: []}
-        ],
-        graphicals: [
-            {
-                title: 'Antecedents', text: "liste des antécédents", type: 'table',
-                data: [
-                    {name: "Acte", ticked: false},
-                    {name: "start Date", ticked: false},
-                    {name: "End Date", ticked: false}
-                ],
-                fields: []
-            },
-            {
-                title: 'Consultations', text: "liste des Consultations", type: 'table',
-                data: [
-                    {name: "type", ticked: false},
-                    {name: "etablissement", ticked: false},
-                    {name: "date", ticked: false},
-                    {name: "description", ticked: false}
-                ],
-                fields: []
-            },
-            {
-                title: 'Prescriptions', text: "liste des Prescriptions", type: 'table',
-                data: [
-                    {name: "medicament", ticked: false},
-                    {name: "dose", ticked: false},
-                    {name: "fréquences", ticked: false}
-                ],
-                fields: []
-            },
-        ]
-    };
-    vm.orig_components = angular.copy(vm.components);
-    vm.model = [];
+
+    $http.get(Routing.generate('api_get_input'))
+            .success(function (data, status, headers, config) {
+                vm.components = data;
+                vm.orig_components = angular.copy(vm.components);
+            }).error(function (error, status, headers, config) {
+
+    });
+
     $scope.sortableOptions = {
         update: function (e, ui) {
             console.log(vm.result.items);
@@ -92,6 +59,13 @@ function PageBuilderController($scope, toastr, $http) {
     };
     vm.reset = function () {
         vm.components = angular.copy(vm.orig_components);
+    }
+    vm.transform = function (attributes) {
+        var data = [];
+        angular.forEach(attributes, function (value, key) {
+            data.push({name: value, ticked: false});
+        });
+        return data;
     }
     vm.save = function () {
         console.log(vm.result);

@@ -2,17 +2,52 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Traits\ModelCategory;
+use AppBundle\Entity\Traits\ModelType;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Component\HttpFoundation\Request;
 
 class ApiModelsController extends FOSRestController {
 
-    use ModelCategory;
+    use ModelType;
+
+use ModelCategory;
 
     public function getInputAction() {
-        $result = $this->modelCategory;
+        $em = $this->getDoctrine()->getManager();
+        $result = array();
+        // catégorie
+        foreach ($this->modelCategory as $value) {
+            $result['categories'] [] = $value;
+        }
+
+        // type
+        foreach ($this->modelType as $value) {
+            $result['types'] [] = $value;
+        }
+
+        // headers
+        $headers = $em->getRepository('AppBundle:VisualElement')->findByType('header');
+        foreach ($headers as $value) {
+            $result['headers'][] = $value;
+        }
+        // layout
+        $layouts = $em->getRepository('AppBundle:VisualElement')->findByType('layout');
+        foreach ($layouts as $value) {
+            $result['layouts'][] = $value;
+        }
+        // composant graphique
+
+        $modelEntities = $em->getRepository('AppBundle:ModelEntity')->findAll();
+        foreach ($modelEntities as $value) {
+            $data = array();
+            foreach ($value->getAttributes() as $attr) {
+                $data[] = array('name' => $attr, 'ticked' => false);
+            }
+            $value->setAttributes($data);
+            $result['graphicals'][] = $value;
+        }
+
         $view = $this->view($result, 200)->setFormat("json");
         return $this->handleView($view);
     }
