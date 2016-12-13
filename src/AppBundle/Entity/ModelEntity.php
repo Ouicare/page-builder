@@ -31,6 +31,13 @@ class ModelEntity {
     /**
      * @var string
      *
+     * @ORM\Column(name="label", type="string", length=255)
+     */
+    private $label;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
@@ -124,7 +131,6 @@ class ModelEntity {
         return $this->type;
     }
 
-
     /**
      * Set title
      *
@@ -132,8 +138,7 @@ class ModelEntity {
      *
      * @return ModelEntity
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
 
         return $this;
@@ -144,8 +149,32 @@ class ModelEntity {
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
+    }
+
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return ModelEntity
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
     }
 }
