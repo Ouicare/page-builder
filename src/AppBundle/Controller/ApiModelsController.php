@@ -16,6 +16,10 @@ class ApiModelsController extends FOSRestController {
 
 use ModelCategory;
 
+    /**
+     * get all input component
+     * @return type
+     */
     public function getInputAction() {
         $em = $this->getDoctrine()->getManager();
         $result = array();
@@ -56,6 +60,11 @@ use ModelCategory;
         return $this->handleView($view);
     }
 
+    /**
+     * Save model as json
+     * @param Request $request
+     * @return type
+     */
     public function postOutputModelAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $trans = $this->get('translator');
@@ -75,6 +84,29 @@ use ModelCategory;
             $em->flush();
         }
         $view = $this->view($response, 200)->setFormat("json");
+        return $this->handleView($view);
+    }
+
+    /**
+     * get modelEntities for summernote
+     */
+    public function getEntitiesModelsAction() {
+        $em = $this->getDoctrine()->getManager();
+        $models = array();
+
+        $modelEntities = $em->getRepository('AppBundle:ModelEntity')->findAll();
+        foreach ($modelEntities as $value) {
+            $data = array();
+            $data['id'] = $value->getId();
+            $data['label'] = $value->getTitle();
+            foreach ($value->getAttributes() as $attr) {
+                $childreens[] = array('label' => $attr, 'data' => array('description' => '', 'parent' => $value->getId()));
+            }
+            $data['children'] = $childreens;
+            $models[] = $data;
+        }
+
+        $view = $this->view($models, 200)->setFormat("json");
         return $this->handleView($view);
     }
 

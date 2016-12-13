@@ -1,89 +1,12 @@
-app.controller('ModelsController', function ($scope) {
+app.controller('ModelsController', function ($scope, $http) {
     $scope.result = "";
-    $scope.models = [
-        {
-            id: 1,
-            label: 'Groupement de santé',
-            children: [
-                {
-                    label: 'Logo',
-                    data: {
-                        description: "description",
-                        parent: 1
-                    }
-                },
-                {
-                    label: 'Nom',
-                    data: {
-                        description: "description",
-                        parent: 1
-                    }
-                },
-                {
-                    label: 'Adresse',
-                    data: {
-                        description: "description",
-                        parent: 1
-                    }
-                }
-            ]
-        },
-        {
-            id: 2,
-            label: 'Etablissment de santé',
-            children: [
-                {
-                    label: 'Logo',
-                    data: {
-                        description: "description",
-                        parent: 2
-                    }
-                },
-                {
-                    label: 'Nom',
-                    data: {
-                        description: "description",
-                        parent: 2
-                    }
-                },
-                {
-                    label: 'Adresse',
-                    data: {
-                        description: "description",
-                        parent: 2
-                    }
-                }
-            ]
-        },
-        {
-            id: 3,
-            label: 'Antécedents',
-            children: [
-                {
-                    label: 'Acte',
-                    data: {
-                        description: "description",
-                        parent: 3
-                    }
-                },
-                {
-                    label: 'Date début',
-                    data: {
-                        description: "description",
-                        parent: 3
-                    }
-                },
-                {
-                    label: 'Date Fin',
-                    data: {
-                        description: "description",
-                        parent: 3
-                    }
-                }
-            ]
-        }
-    ];
 
+    $http.get(Routing.generate('api_get_entities_models'))
+            .success(function (data, status, headers, config) {
+                $scope.models = data;
+            }).error(function (error, status, headers, config) {
+
+    });
 
     $scope.selectedModels = function (branch) {
         $scope.result = "";
