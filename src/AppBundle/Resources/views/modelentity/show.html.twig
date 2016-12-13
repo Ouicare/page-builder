@@ -11,7 +11,7 @@
             </tr>
             <tr>
                 <th>Name</th>
-                <td>{{ modelEntity.name }}</td>
+                <td>{{ modelEntity.title }}</td>
             </tr>
             <tr>
                 <th>Description</th>
@@ -37,7 +37,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

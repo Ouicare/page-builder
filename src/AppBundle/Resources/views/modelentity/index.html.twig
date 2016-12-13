@@ -7,7 +7,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Title</th>
                 <th>Description</th>
                 <th>Type</th>
                 <th>Attributes</th>
@@ -15,25 +15,25 @@
             </tr>
         </thead>
         <tbody>
-        {% for modelEntity in modelEntities %}
-            <tr>
-                <td><a href="{{ path('modelentity_show', { 'id': modelEntity.id }) }}">{{ modelEntity.id }}</a></td>
-                <td>{{ modelEntity.name }}</td>
-                <td>{{ modelEntity.description }}</td>
-                <td>{{ modelEntity.type }}</td>
-                <td>{% if modelEntity.attributes %}{{ modelEntity.attributes|join(', ') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('modelentity_show', { 'id': modelEntity.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('modelentity_edit', { 'id': modelEntity.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for modelEntity in modelEntities %}
+                <tr>
+                    <td><a href="{{ path('modelentity_show', { 'id': modelEntity.id }) }}">{{ modelEntity.id }}</a></td>
+                    <td>{{ modelEntity.title }}</td>
+                    <td>{{ modelEntity.description }}</td>
+                    <td>{{ modelEntity.type }}</td>
+                    <td>{% if modelEntity.attributes %}{{ modelEntity.attributes|join(', ') }}{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('modelentity_show', { 'id': modelEntity.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('modelentity_edit', { 'id': modelEntity.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 

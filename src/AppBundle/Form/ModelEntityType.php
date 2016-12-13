@@ -14,7 +14,7 @@ class ModelEntityType extends AbstractType {
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $classNames = $options['classNames'];
-        $builder->add('name', null, array('attr' => array('ng-model' => 'entity.name')))
+        $builder->add('title', null, array('attr' => array('ng-model' => 'entity.title')))
                 ->add('description', null, array('attr' => array('ng-model' => 'entity.description')))
                 ->add('type', ChoiceType::class, array('choices' => $classNames,
                     'choice_label' => function ($value, $key, $index) {

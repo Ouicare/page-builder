@@ -19,8 +19,6 @@ class ApiEntityModelController extends FOSRestController {
         $response = array();
         if ($request->getMethod() == 'POST') {
             $result = $request->request->all();
-            dump($result);
-            die();
         }
         $view = $this->view($response, 200)->setFormat("json");
         return $this->handleView($view);
