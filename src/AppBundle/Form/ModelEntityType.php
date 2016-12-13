@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ModelEntityType extends AbstractType {
 
@@ -12,10 +13,16 @@ class ModelEntityType extends AbstractType {
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('name')
-                ->add('description')
-                ->add('type')
-                ->add('attributes');
+        $classNames = $options['classNames'];
+        $builder->add('name', null, array('attr' => array('ng-model' => 'entity.name')))
+                ->add('description', null, array('attr' => array('ng-model' => 'entity.description')))
+                ->add('type', ChoiceType::class, array('choices' => $classNames,
+                    'choice_label' => function ($value, $key, $index) {
+                        return $value;
+                    }, 'label' => 'Entité',
+                    'attr' => array('ng-model' => 'entity.type', 'ng-change' => 'getAttributes(entity.type)')
+                ))
+                ->add('attributes', null, array('attr' => array('ng-model' => 'entity.attributes')));
     }
 
     /**
@@ -25,6 +32,7 @@ class ModelEntityType extends AbstractType {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\ModelEntity'
         ));
+        $resolver->setDefined(array('classNames'));
     }
 
     /**

@@ -32,7 +32,10 @@ class ModelEntityController extends Controller {
      */
     public function newAction(Request $request) {
         $modelEntity = new Modelentity();
-        $form = $this->createForm('AppBundle\Form\ModelEntityType', $modelEntity);
+        $classNames = $this->getDoctrine()->getEntityManager()->getConfiguration()
+                ->getMetadataDriverImpl()
+                ->getAllClassNames();
+        $form = $this->createForm('AppBundle\Form\ModelEntityType', $modelEntity, array('classNames' => $classNames));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

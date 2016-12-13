@@ -2,3 +2,8 @@ models_ :
   type: rest
   resource:     "AppBundle:ApiModels"
   name_prefix:  api_
+entity_model_ :
+  type: rest
+  resource:     "AppBundle:ApiEntityModel"
+  prefix: /entity/model
+  name_prefix:  api_entity_model_

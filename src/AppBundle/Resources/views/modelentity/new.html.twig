@@ -1,30 +1,38 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
-    <h1>Modelentity creation</h1>
+    <div class="container">
+        <h1>Test création</h1>
+        <div class="row" ng-controller="ModelEntityController as model">
+            {{ form_start(form) }}
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}<br>
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}<br>
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type) }} <br>
+            {{ form_label(form.attributes) }}
+            {% verbatim %}
+                <div ng-show="hasAttributes()" ng-repeat="attribute in entity.attributes">
+                    label :<input ng-model="attribute.label">
+                    Field:<select ng-model="attribute.name">
+                        <option ng-repeat="option in modelAttributes">{{option}}</option>
+                    </select>
+                    <button class="btn btn-danger btn-sm" ng-click="removeAttribute(index)"><i class="fa fa-plus"></i></button> <br>
 
-    {{ form_start(form) }}
-    {{ form_label(form.name) }}
-    {{ form_widget(form.name) }}<br>
-    {{ form_label(form.description) }}
-    {{ form_widget(form.description) }}<br>
-    {{ form_label(form.type) }}
-    {{ form_widget(form.type) }} <br>
-    <label> Entité :</label>
-    <select>
-        <option value="patient">Patient</option>
-        <option value="measure">Mesure</option>
-        <option value="consultation">Consultation</option>
-        <option value="antecedent">Antecedent</option>
-    </select> <br>
-    {{ form_label(form.attributes) }}
-    {{ form_widget(form.attributes) }} <br>
-    <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                </div>
+            {% endverbatim %}
+            <button class="btn btn-success  btn-sm" ng-click="addAttribute()"><i class="fa fa-plus"></i></button> <br>
+            <input type="submit" ng-click="save()" value="Create" />
+            {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('modelentity_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            <ul>
+                <li>
+                    <a href="#{#{{ path('modelentity_index') }}#}">Back to the list</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset("js/controllers/model.entity.controller.js")}}"></script>
 {% endblock %}
