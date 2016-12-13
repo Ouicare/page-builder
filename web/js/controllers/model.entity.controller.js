@@ -1,7 +1,7 @@
 app.controller('ModelEntityController', ModelEntityController);
 function ModelEntityController($scope,$http,toastr) {
     var vm = $scope;
-    vm.entity ={name:'test',description: 'test',type:'',attributes:[]};
+    vm.entity ={title:'',label:'',description: '',type:'',attributes:[]};
     vm.modelAttributes = [];
     vm.getAttributes= function(item){
         vm.entity.attributes = [];

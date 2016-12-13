@@ -16,11 +16,27 @@ class ApiEntityModelController extends FOSRestController {
     }
 
     public function postAction(Request $request) {
-        $response = array();
+        $em = $this->getDoctrine()->getEntityManager();
         if ($request->getMethod() == 'POST') {
-            $result = $request->request->all();
+            $data = $request->request->all()['data'];
+            $classNames = $em->getConfiguration()
+                    ->getMetadataDriverImpl()
+                    ->getAllClassNames();
+            $modelEntity = new \AppBundle\Entity\ModelEntity();
+            try {
+                $form = $this->createForm('AppBundle\Form\ModelEntityType', $modelEntity, array('classNames' => $classNames));
+                $form->submit($data);
+                $modelEntity->setAttributes($data['attributes']);
+                $em->persist($modelEntity);
+                $em->flush();
+                $status = 200;
+                $result = array('success' => 'Ok');
+            } catch (\Exception $exc) {
+                $status = 500;
+                $result = array('error' => $exc->getMessage());
+            }
         }
-        $view = $this->view($response, 200)->setFormat("json");
+        $view = $this->view($result, $status)->setFormat("json");
         return $this->handleView($view);
     }
 

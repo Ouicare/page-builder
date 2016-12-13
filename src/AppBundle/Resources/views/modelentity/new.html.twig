@@ -6,17 +6,19 @@
             {{ form_start(form) }}
             {{ form_label(form.title) }}
             {{ form_widget(form.title) }}<br>
+            {{ form_label(form.label) }}
+            {{ form_widget(form.label) }}<br>
             {{ form_label(form.description) }}
             {{ form_widget(form.description) }}<br>
             {{ form_label(form.type) }}
             {{ form_widget(form.type) }} <br>
             {{ form_label(form.attributes) }}
             {% verbatim %}
-                <div ng-show="hasAttributes()" ng-repeat="attribute in entity.attributes">
-                    label :<input ng-model="attribute.label">
+                <div ng-show="hasAttributes()" ng-repeat="attribute in entity.attributes track by $index">
                     Field:<select ng-model="attribute.name">
                         <option ng-repeat="option in modelAttributes">{{option}}</option>
                     </select>
+                    label :<input ng-model="attribute.label">
                     <button class="btn btn-danger btn-sm" ng-click="removeAttribute(index)"><i class="fa fa-plus"></i></button> <br>
 
                 </div>
