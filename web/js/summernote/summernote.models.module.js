@@ -3,6 +3,7 @@
 var Models = function (context) {
 
     var self = this;
+    var ins;
     // you can get current editor's elements from layoutInfo
     var layoutInfo = context.layoutInfo;
     var $editor = layoutInfo.editor;
@@ -30,6 +31,8 @@ var Models = function (context) {
                 });
             }
         }).render().appendTo($container);
+
+
         // create button
         var button = ui.button({
             className: 'note-btn btn btn-default btn-sm',
@@ -49,11 +52,13 @@ var Models = function (context) {
                     console.log('template not found in ' + path);
                 });
                 // save button
-                $("#save").click(function () {
-                    context.invoke('editor.insertText', angular.element(document.getElementById('models')).scope().result);
-                    $(".modal").modal("hide");
-
-                });
+                /* $("#save").click(function () {
+                 console.log("saveclicked");
+                 ins = angular.element(document.getElementById('models')).scope().varmodel;
+                 console.log(ins);
+                 context.invoke('editor.insertText', ins);
+                 $(".modal").modal("hide");
+                 });*/
                 // show dialog
                 show();
             }
@@ -66,7 +71,25 @@ var Models = function (context) {
     // show dialog
     function show() {
         return $.Deferred(function (deferred) {
-
+            var $saveBtn = self.$dialog.find('#save');
+            $saveBtn.click(function (event) {
+                event.preventDefault();
+                $(".modal").modal("hide");
+                ins = angular.element(document.getElementById('models')).scope().varmodel;
+                var node = document.createElement('span');
+                node.innerHTML = ins + '<p>&nbsp;</p>';
+                context.invoke('editor.insertNode', node);
+                /*var selection = document.getSelection();
+                 console.log(selection);
+                 var cursorPos = selection.anchorOffset;
+                 console.log(cursorPos);
+                 var oldContent = selection.anchorNode.nodeValue;
+                 console.log(oldContent);
+                 var toInsert = "InsertMe!";
+                 var newContent = oldContent.substring(0, cursorPos) + toInsert + oldContent.substring(cursorPos);
+                 console.log(newContent);
+                 selection.anchorNode.nodeValue = newContent;*/
+            });
             ui.onDialogShown(self.$dialog, function () {
                 context.triggerEvent('dialog.shown');
                 console.log("dialog show");
@@ -74,6 +97,7 @@ var Models = function (context) {
 
             ui.onDialogHidden(self.$dialog, function () {
                 console.log("dialog hide");
+                $saveBtn.off('click');
             });
 
             ui.showDialog(self.$dialog);
@@ -86,5 +110,7 @@ var Models = function (context) {
         this.$button = null;
         ui.hideDialog(this.$dialog);
         this.$dialog.remove();
+
     }
 };
+

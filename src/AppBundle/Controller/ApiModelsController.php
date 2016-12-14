@@ -99,7 +99,7 @@ use ModelCategory;
             $data['id'] = $value->getId();
             $data['label'] = $value->getTitle();
             foreach ($value->getAttributes() as $attr) {
-                $childreens[] = array('label' => $attr, 'data' => array('description' => '', 'parent' => $value->getId()));
+                $childreens[] = array('label' => $attr['label'], 'name' => $attr['name'], 'data' => array('description' => '', 'parent' => $value->getTitle()));
             }
             $data['children'] = $childreens;
             $models[] = $data;

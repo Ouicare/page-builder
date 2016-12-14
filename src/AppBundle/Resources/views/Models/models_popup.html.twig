@@ -1,5 +1,5 @@
 <div id="models" ng-controller="ModelsController">
     <input type="hidden"  ng-value="result"  />
-    <abn-tree tree-data="models"
+    <abn-tree tree-data="models" ng-if="isInit"
               on-select = "selectedModels(branch)"></abn-tree>
 </div>
