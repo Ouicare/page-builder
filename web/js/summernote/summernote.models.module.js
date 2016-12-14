@@ -38,6 +38,7 @@ var Models = function (context) {
             className: 'note-btn btn btn-default btn-sm',
             contents: 'Models',
             click: function (e) {
+                context.invoke('editor.saveRange');
                 $.get(path)
                         .done(function (data) {
                             console.log(data);
@@ -51,14 +52,6 @@ var Models = function (context) {
                         }).fail(function () {
                     console.log('template not found in ' + path);
                 });
-                // save button
-                /* $("#save").click(function () {
-                 console.log("saveclicked");
-                 ins = angular.element(document.getElementById('models')).scope().varmodel;
-                 console.log(ins);
-                 context.invoke('editor.insertText', ins);
-                 $(".modal").modal("hide");
-                 });*/
                 // show dialog
                 show();
             }
@@ -76,19 +69,9 @@ var Models = function (context) {
                 event.preventDefault();
                 $(".modal").modal("hide");
                 ins = angular.element(document.getElementById('models')).scope().varmodel;
-                var node = document.createElement('span');
-                node.innerHTML = ins + '<p>&nbsp;</p>';
-                context.invoke('editor.insertNode', node);
-                /*var selection = document.getSelection();
-                 console.log(selection);
-                 var cursorPos = selection.anchorOffset;
-                 console.log(cursorPos);
-                 var oldContent = selection.anchorNode.nodeValue;
-                 console.log(oldContent);
-                 var toInsert = "InsertMe!";
-                 var newContent = oldContent.substring(0, cursorPos) + toInsert + oldContent.substring(cursorPos);
-                 console.log(newContent);
-                 selection.anchorNode.nodeValue = newContent;*/
+                 context.invoke('editor.restoreRange');
+context.invoke('editor.focus');
+                context.invoke('editor.insertText', ins);
             });
             ui.onDialogShown(self.$dialog, function () {
                 context.triggerEvent('dialog.shown');
