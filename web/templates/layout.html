@@ -1,7 +1,7 @@
 <div class="row">
     <div class="placeholder-container">
         <div class="placeholder">
-            <div class="placeholder-content col-md-12" ng-model="item"  ng-if="item.name === '1 Column'">
+            <div class="placeholder-content col-md-12" ng-model="item"  ng-if="item.title === '1 Column'">
                 <div ng-model="item.composants" class="placeholder-content-area apps-container" ui-sortable="sortableOptions">
                     <div ng-repeat="composant in item.composants track by $index" class="composant">
                         <tg-dynamic-directive ng-if="composant.type != 'layout'" ng-model="composant" tg-dynamic-directive-view="getView">
@@ -9,7 +9,7 @@
                     </div>
                 </div>
             </div>
-            <div class="placeholder-content col-md-6" ng-if="item.name === '2 Columns'">
+            <div class="placeholder-content col-md-6" ng-if="item.title === '2 Columns'">
                 <div ng-model="item.left" class="placeholder-content-area apps-container" ui-sortable="sortableOptions">
                     <div ng-repeat="composant in item.left track by $index" class="left">
                         <tg-dynamic-directive ng-if="composant.type != 'layout'" ng-model="composant" tg-dynamic-directive-view="getView">
@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="placeholder-content col-md-6" ng-if="item.name === '2 Columns'">
+            <div class="placeholder-content col-md-6" ng-if="item.title === '2 Columns'">
                 <div ng-model="item.right" class="placeholder-content-area apps-container" ui-sortable="sortableOptions">
                     <div ng-repeat="composant in item.right track by $index" class="right">
                         <tg-dynamic-directive ng-if="composant.type != 'layout'" ng-model="composant" tg-dynamic-directive-view="getView">
@@ -31,7 +31,6 @@
             <div class="handle-remove" ng-click="remove($index)" style="cursor:pointer"><i class="fa fa-times"></i></div>
         </div>
     </div>
-</div>
 <style>
     .placeholder-over{
         border: 2px #337ab7 dotted;
@@ -146,3 +145,4 @@
         background-color: #ffffff;
     }
 </style>
+</div>

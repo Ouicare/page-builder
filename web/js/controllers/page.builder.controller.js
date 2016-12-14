@@ -18,7 +18,6 @@ function PageBuilderController($scope, toastr, $http) {
 
     $scope.sortableOptions = {
         update: function (e, ui) {
-            console.log(vm.result.items);
             vm.reset();
         },
         receive: function (e, ui) {
