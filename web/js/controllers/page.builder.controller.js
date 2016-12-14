@@ -39,7 +39,7 @@ function PageBuilderController($scope, toastr, $http) {
          based on the provided item
          */
         if (item) {
-            return "templates/" + item.type + ".html";
+            return "templates/" + item.tpl + ".html";
         }
         return null;
     }

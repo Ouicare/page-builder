@@ -20,6 +20,7 @@ class Layout {
     private $id;
     private $title;
     private $type;
+    private $tpl;
     private $description;
     private $content;
     private $composants;
@@ -32,6 +33,7 @@ class Layout {
         $this->type = $object->getType();
         $this->description = $object->getDescription();
         $this->content = $object->getContent();
+        $this->tpl = $this->type;
         if ($this->title == '1 Column') {
             $this->composants = array();
         } else if ($this->title == '2 Columns') {
@@ -102,6 +104,14 @@ class Layout {
 
     function setRight($right) {
         $this->right = $right;
+    }
+
+    function getTpl() {
+        return $this->tpl;
+    }
+
+    function setTpl($tpl) {
+        $this->tpl = $tpl;
     }
 
 }

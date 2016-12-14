@@ -22,6 +22,7 @@ class Header {
     private $description;
     private $content;
     private $text;
+    private $tpl;
 
     function __construct($object) {
         $this->id = $object->getId();
@@ -29,6 +30,7 @@ class Header {
         $this->type = $object->getType();
         $this->description = $object->getDescription();
         $this->content = $object->getContent();
+        $this->tpl = $this->type;
         if ($this->type == 'header') {
             $this->text = "";
         }
@@ -80,6 +82,14 @@ class Header {
 
     function setText($text) {
         $this->text = $text;
+    }
+
+    function getTpl() {
+        return $this->tpl;
+    }
+
+    function setTpl($tpl) {
+        $this->tpl = $tpl;
     }
 
 }

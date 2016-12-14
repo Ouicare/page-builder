@@ -27,6 +27,7 @@ class ApiEntityModelController extends FOSRestController {
                 $form = $this->createForm('AppBundle\Form\ModelEntityType', $modelEntity, array('classNames' => $classNames));
                 $form->submit($data);
                 $modelEntity->setAttributes($data['attributes']);
+                $modelEntity->setTpl("table");
                 $em->persist($modelEntity);
                 $em->flush();
                 $status = 200;

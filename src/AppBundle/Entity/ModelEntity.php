@@ -43,6 +43,13 @@ class ModelEntity {
     private $type;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="tpl", type="string", length=255)
+     */
+    private $tpl;
+
+    /**
      * @var array
      *
      * @ORM\Column(name="attributes", type="array")
@@ -146,4 +153,28 @@ class ModelEntity {
         return $this->title;
     }
 
+
+    /**
+     * Set tpl
+     *
+     * @param string $tpl
+     *
+     * @return ModelEntity
+     */
+    public function setTpl($tpl)
+    {
+        $this->tpl = $tpl;
+
+        return $this;
+    }
+
+    /**
+     * Get tpl
+     *
+     * @return string
+     */
+    public function getTpl()
+    {
+        return $this->tpl;
+    }
 }
