@@ -8,9 +8,13 @@
         {% verbatim %}
             <div  ng-controller="PageBuilderController as builder">
                 <div class="row">
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
+                        <a href="app_dev.php/models/model/list" type="button" class="btn btn-success pull-left">List models</a>
+                    </div>
+                    <div class="form-group col-md-6">
                         <button type="button" ng-click="save()" class="btn btn-success pull-right">Sauvegarder</button>
                     </div>
+
                     <div class="form-group col-md-4">
                         <div class="form-group">
                             <label for="name">Nom du modéle</label>

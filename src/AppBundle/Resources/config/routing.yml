@@ -2,16 +2,14 @@ app_modelentity:
     resource: "@AppBundle/Resources/config/routing/modelentity.yml"
     prefix:   /modelentity
 
+app_model:
+    resource: "@AppBundle/Resources/config/routing/model.yml"
+    prefix:   /model
+
 models_popup:
     path:     /ModelsPopup
     defaults: { _controller: AppBundle:Models:ModelsPopup }
     options:
         expose: true
 
-list:
-    path:     /list
-    defaults: { _controller: AppBundle:Model:list }
 
-show:
-    path:     /show
-    defaults: { _controller: AppBundle:Model:show }

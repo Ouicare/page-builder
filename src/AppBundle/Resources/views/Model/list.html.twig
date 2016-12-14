@@ -1,7 +1,35 @@
-{% extends "::base.html.twig" %}
-
-{% block title %}AppBundle:Model:list{% endblock %}
+{% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>Welcome to the Model:list page</h1>
+    <h1>Models list</h1>
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Categorie</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for model in models %}
+                    <tr>
+                        <td><a href="{{ path('app_model_show', { 'id': model.id }) }}">{{ model.id }}</a></td>
+                        <td>{{ model.name }}</td>
+                        <td>{{ model.category }}</td>
+                        <td>{{ model.type }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('app_model_show', { 'id': model.id }) }}">show</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -3,5 +3,105 @@
 {% block title %}AppBundle:Model:show{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Model:show page</h1>
+    <h1>Welcome to the Model:show page</h1>
+    <div class="model col-md-8" ng-controller="ModelTemplateController">
+        <div class="page-header">
+            <h1>{{model.name}} <small></small></h1>
+        </div>
+        {% for item in model.content %}
+            {% if item.type == "layout" and item.title== "1 Column" %}
+                <div class="col-md-12">
+                    {% set composants = item.composants %}
+                    {% for composant in composants %}
+                        {% if composant.tpl == "header" %}
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    {{composant.text |raw }}
+                                </div>
+                            </div>
+                        {% elseif composant.tpl == "table" %}
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{{composant.title}}</div>
+                                <div class="panel-body">
+                                    {{composant.description}}
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        {% for head in composant.fields %}
+                                        <th>{{head.label}}</th>
+                                        {% endfor %}
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% elseif item.type == "layout" and item.title== "2 Columns" %}
+                <div class="col-md-6">
+                    {% set left = item.left %}
+                    {% for leftComp in left %}
+                        {% if leftComp.tpl == "header" %}
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    {{leftComp.text|raw }}
+                                </div>
+                            </div>
+                        {% elseif leftComp.tpl == "table" %}
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{{leftComp.title}}</div>
+                                <div class="panel-body">
+                                    {{leftComp.description}}
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        {% for head in leftComp.fields %}
+                                        <th>{{head.label}}</th>
+                                        {% endfor %}
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-md-6">
+                    {% set right = item.right %}
+                    {% for rightComp in right %}
+                        {% if rightComp.tpl == "header" %}
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    {{rightComp.text|raw }}
+                                </div>
+                            </div>
+                        {% elseif rightComp.tpl == "table" %}
+                            <div class="panel panel-default">
+                                <div class="panel-heading">{{rightComp.title}}</div>
+                                <div class="panel-body">
+                                    {{rightComp.description}}
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        {% for head in rightComp.fields %}
+                                        <th>{{head.label}}</th>
+                                        {% endfor %}
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif%}
+        {% endfor %}
+
+    </div>
+    <style>
+        .model{
+            background:#EEE;
+        }
+    </style>
 {% endblock %}
