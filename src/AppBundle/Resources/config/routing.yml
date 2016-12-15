@@ -12,4 +12,6 @@ models_popup:
     options:
         expose: true
 
-
+show_model:
+    path:     /model/{model}/show
+    defaults: { _controller: AppBundle:Models:show }

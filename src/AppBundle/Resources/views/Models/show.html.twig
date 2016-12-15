@@ -1,0 +1,44 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Show Model{% endblock %}
+
+{% block body %}
+    <h1>Welcome to the Model:show page</h1>
+    <div class="container">
+        {% for content in model.content %}
+            <div class="row">
+                {% if content.left is defined %}
+                    <div class="col-md-6">
+                        {% for item in content.left %}
+                            <div>{{item.text|raw}}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-6">
+                        {% for item in content.right %}
+                            <div>{{item.text|raw}}</div>
+                        {% endfor %}
+                    </div>
+                {%elseif content.composants is defined%}
+                    {%for component in content.composants %}
+                        {% if content.left is defined %}
+                            <div class="col-md-6">
+                                {% for item in content.left %}
+                                    <div>{{item.text|raw}}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6">
+                                {% for item in content.right %}
+                                    <div>{{item.text|raw}}</div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="col-md-12">{{component.text|raw}}</div>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <div class="col-md-12">{{content.text|raw}}</div>
+                {% endif %}
+            </div>
+        {% endfor%}
+    </div>
+{% endblock %}

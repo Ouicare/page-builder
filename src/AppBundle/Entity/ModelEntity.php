@@ -31,6 +31,13 @@ class ModelEntity {
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
@@ -153,7 +160,6 @@ class ModelEntity {
         return $this->title;
     }
 
-
     /**
      * Set tpl
      *
@@ -161,8 +167,7 @@ class ModelEntity {
      *
      * @return ModelEntity
      */
-    public function setTpl($tpl)
-    {
+    public function setTpl($tpl) {
         $this->tpl = $tpl;
 
         return $this;
@@ -173,8 +178,32 @@ class ModelEntity {
      *
      * @return string
      */
-    public function getTpl()
-    {
+    public function getTpl() {
         return $this->tpl;
+    }
+
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return ModelEntity
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

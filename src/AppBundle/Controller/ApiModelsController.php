@@ -75,8 +75,8 @@ use ModelCategory;
             $type = $data['type'];
             $items = $data['items'];
             $model = new Model();
-            $model->setCategory($category);
-            $model->setType($type);
+            $model->setCategory(array_search($category, $model->modelCategory));
+            $model->setType(array_search($type, $model->modelType));
             $model->setContent($items);
             $model->setName($name);
             $em->persist($model);
@@ -99,7 +99,7 @@ use ModelCategory;
             $data['id'] = $value->getId();
             $data['label'] = $value->getTitle();
             foreach ($value->getAttributes() as $attr) {
-                $childreens[] = array('label' => $attr['label'], 'name' => $attr['name'], 'data' => array('description' => '', 'parent' => $value->getTitle()));
+                $childreens[] = array('label' => $attr['label'], 'name' => $attr['name'], 'data' => array('parent' => array('id' => $value->getId(), 'name' => $value->getName())));
             }
             $data['children'] = $childreens;
             $models[] = $data;

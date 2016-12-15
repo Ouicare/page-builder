@@ -11,12 +11,13 @@ var Models = function (context) {
     var $toolbar = layoutInfo.toolbar;
     var options = context.options;
     var lang = options.langInfo;
+    var treeView;
     // ui is a set of renderers to build ui elements.
     var ui = $.summernote.ui;
     // this method will be called when editor is initialized by $('..').summernote();
     // You can attach events and created elements on editor elements(eg, editable, ...).
     this.initialize = function () {
-        var $container = options.dialogsInBody ? $(document.body) : $editor;
+        var $container = $editor;
         var path = Routing.generate('models_popup');
         var body = '<div class="content"></div>'
         var footer = '<button id="save" class="btn btn-success">Sauvegarder</button>'
@@ -39,38 +40,42 @@ var Models = function (context) {
             contents: 'Models',
             click: function (e) {
                 context.invoke('editor.saveRange');
-                $.get(path)
-                        .done(function (data) {
-                            console.log(data);
-                            angular.element(document).injector().invoke(function ($compile) {
+             if (treeView === undefined) {
+            treeView = getData();
+            }   
+            angular.element(document).injector().invoke(function ($compile) {
                                 var obj = $('.content');
                                 var scope = obj.scope();
                                 // generate dynamic content
-                                obj.html($(data));
+                                obj.html($(treeView));
                                 $compile(obj.contents())(scope);
                             });
-                        }).fail(function () {
-                    console.log('template not found in ' + path);
-                });
                 // show dialog
-                show();
+                show($container);
             }
         });
         // generate jQuery element from button instance.
         this.$button = button.render();
         $toolbar.append(this.$button);
     }
-
+function getData(){
+    var path = Routing.generate('models_popup');
+               var data =  $.ajax({ type: "GET",   
+                        url: path,   
+                        async: false
+                      }).responseText;
+                return data;
+}
     // show dialog
-    function show() {
+    function show($container) {
         return $.Deferred(function (deferred) {
             var $saveBtn = self.$dialog.find('#save');
             $saveBtn.click(function (event) {
                 event.preventDefault();
                 $(".modal").modal("hide");
-                ins = angular.element(document.getElementById('models')).scope().varmodel;
-                 context.invoke('editor.restoreRange');
-context.invoke('editor.focus');
+                ins = angular.element($container.parent().find("#models")).scope().varmodel;
+                context.invoke('editor.restoreRange');
+                context.invoke('editor.focus');
                 context.invoke('editor.insertText', ins);
             });
             ui.onDialogShown(self.$dialog, function () {
@@ -80,6 +85,7 @@ context.invoke('editor.focus');
 
             ui.onDialogHidden(self.$dialog, function () {
                 console.log("dialog hide");
+                ui.hideDialog(self.$dialog);
                 $saveBtn.off('click');
             });
 

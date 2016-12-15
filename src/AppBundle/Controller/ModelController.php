@@ -19,7 +19,8 @@ class ModelController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $currentModel = $em->getRepository("AppBundle:Model")->find($id);
         return $this->render('AppBundle:Model:show.html.twig', array(
-                    'model' => $currentModel
+                    'model' => $currentModel,
+                    'Consultation' => array('name' => 'Nom de la consultation', 'title' => 'Titre de la consultation')
         ));
     }
 

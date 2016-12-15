@@ -17,7 +17,7 @@ app.controller('ModelsController', function ($scope, $http) {
         $scope.varmodel = "";
         if (branch.level == 2) {
             console.log(branch);
-            $scope.varmodel = "{{" + branch.data.parent + "." + branch.name + "}}";
+            $scope.varmodel = "{{" + branch.data.parent.name + "." + branch.name + "}}";
         }
         console.log($scope.varmodel);
     };
