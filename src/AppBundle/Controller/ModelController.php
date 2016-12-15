@@ -20,7 +20,8 @@ class ModelController extends Controller {
         $currentModel = $em->getRepository("AppBundle:Model")->find($id);
         return $this->render('AppBundle:Model:show.html.twig', array(
                     'model' => $currentModel,
-                    'Consultation' => array('name' => 'Nom de la consultation', 'title' => 'Titre de la consultation')
+                    'Consultation' => array('name' => 'Nom de la consultation', 'title' => 'Titre de la consultation'),
+                    'doctor' => array("fullname" => "Anis Marrouchi")
         ));
     }
 
