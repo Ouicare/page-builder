@@ -74,7 +74,12 @@ use ModelCategory;
             $category = $data['category'];
             $type = $data['type'];
             $items = $data['items'];
+            //@todo: refactor, refactor, refactor
             $model = new Model();
+            foreach ($data['entities'] as $id) {
+                $entity = $em->getRepository("AppBundle:ModelEntity")->find($id);
+                $model->addEntity($entity);
+            }
             $model->setCategory(array_search($category, $model->modelCategory));
             $model->setType(array_search($type, $model->modelType));
             $model->setContent($items);

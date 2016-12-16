@@ -16,6 +16,7 @@ class ModelEntityType extends AbstractType {
         $classNames = $options['classNames'];
         $builder->add('title', null, array('attr' => array('ng-model' => 'entity.title')))
                 ->add('description', null, array('attr' => array('ng-model' => 'entity.description')))
+                ->add('entities', null, array('class' => '\AppBundle\Entity\ModelEntity', 'attr' => array('ng-model' => 'entity.entities', 'multiple' => true)))
                 ->add('type', ChoiceType::class, array('choices' => $classNames,
                     'choice_label' => function ($value, $key, $index) {
                         return $value;

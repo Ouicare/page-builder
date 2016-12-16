@@ -9,28 +9,34 @@
             <div  ng-controller="PageBuilderController as builder">
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <a href="app_dev.php/models/model/list" type="button" class="btn btn-success pull-left">List models</a>
+                        <a href="#" onclick="window.location = Routing.generate('app_model_list')" type="button" class="btn btn-success pull-left">List models</a>
                     </div>
                     <div class="form-group col-md-6">
                         <button type="button" ng-click="save()" class="btn btn-success pull-right">Sauvegarder</button>
                     </div>
 
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <div class="form-group">
                             <label for="name">Nom du modéle</label>
                             <input type="text" class="form-control" id="name" placeholder="Entrer nom du modéle" ng-model="result.name">
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label for="category">Catégorie</label>
                         <select class="form-control" id="category" ng-model="result.category">
                             <option ng-repeat="option in components.categories" ng-value="option">{{option}}</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label for="category">Type</label>
                         <select class="form-control" id="category" ng-model="result.type">
                             <option ng-repeat="option in components.types" ng-value="option">{{option}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="category">Modèles associés</label>
+                        <select class="form-control" id="category" ng-model="result.entities" multiple="true">
+                            <option ng-repeat="option in components.graphicals track by $index" ng-value="option.id">{{option.title}}</option>
                         </select>
                     </div>
                 </div>
@@ -90,13 +96,9 @@
                                             <a href="#" class="list-group-item active item" ng-repeat="item in components.graphicals track by $index">
                                                 <h4 class="list-group-item-heading"><i class="fa fa-arrows"></i>{{item.title}}</h4>
 
-                                                <div isteven-multi-select
-                                                     input-model="item.attributes"
-                                                     output-model="item.fields"
-                                                     button-label="name"
-                                                     item-label="name"
-                                                     tick-property="ticked">
-                                                </div>
+                                                <p class="list-group-item-text">
+                                                    <span ng-repeat="field in item.attributes"> {{field.label}} {{$last ? '' : '| '}}</span>
+                                                </p>
 
                                             </a>
                                         </div>

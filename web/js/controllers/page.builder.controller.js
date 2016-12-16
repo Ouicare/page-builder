@@ -4,6 +4,7 @@ function PageBuilderController($scope, toastr, $http) {
     vm.result = {
         name: '',
         category: '',
+        entities:[],
         type: '',
         items: []
     };

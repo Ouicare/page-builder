@@ -15,14 +15,27 @@ class ModelController extends Controller {
         ));
     }
 
-    public function showAction($id) {
+    public function showAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
         $currentModel = $em->getRepository("AppBundle:Model")->find($id);
-        return $this->render('AppBundle:Model:show.html.twig', array(
-                    'model' => $currentModel,
-                    'Consultation' => array('name' => 'Nom de la consultation', 'title' => 'Titre de la consultation'),
-                    'doctor' => array("fullname" => "Anis Marrouchi")
-        ));
+        $data = array(
+            'model' => $currentModel,
+        );
+        foreach ($currentModel->getEntities() as $entity) {
+            /* @var $entity \AppBundle\Entity\ModelEntity */
+            $param = $request->query->get(strtolower($entity->getName()));
+            if (!$param) {
+                $value = $em->getRepository($entity->getType())->findAll();
+            } else {
+                $value = $em->getRepository($entity->getType())->find($param);
+                if (!$value) {
+                    throw $this->createNotFoundException('Unable to find required entity.');
+                }
+            }
+            $data[$entity->getName()] = $value;
+            //Get the rest
+        }
+        return $this->render('AppBundle:Model:show.html.twig', $data);
     }
 
 }

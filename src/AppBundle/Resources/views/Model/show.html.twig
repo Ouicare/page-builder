@@ -29,18 +29,41 @@
                                         </div>
                                     {% elseif composant.tpl == "table" %}
                                         <div class="panel panel-default">
-                                            <div class="panel-heading" summernote airMode>{{composant.title}}</div>
+                                            <div class="panel-heading" summernote airMode><h4>{{composant.title}}</h4><hr /></div>
                                             <div class="panel-body" summernote airMode>
                                                 {{composant.description}}
                                             </div>
                                             <table class="table">
                                                 <thead>
-                                                    {% for head in composant.fields %}
+                                                    {% for head in composant.attributes %}
                                                     <th>{{head.label}}</th>
                                                     {% endfor %}
                                                 </thead>
                                                 <tbody>
-                                                    {{dump(composant)}}
+                                                    {% if _context[composant.name] is defined %}
+                                                        {% if _context[composant.name] is iterable %}
+                                                            {% for row in _context[composant.name] %}
+                                                                <tr>
+                                                                    {% for field in composant.attributes %}
+                                                                        <td>
+                                                                            {{ attribute(row, field.name) }}
+                                                                        </td>
+                                                                    {% endfor %}
+                                                                </tr>
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            <tr>
+                                                                {% for field in composant.attributes %}
+                                                                    <td>
+                                                                        {{ attribute(_context[composant.name], field.name) }}
+                                                                    </td>
+                                                                {% endfor %}
+                                                            </tr>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        <tr><td colspan="{{composant.attributes|length}}"><i>Donnée invalide</i></td></tr>
+                                                    {% endif %}
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -51,7 +74,7 @@
                     {% elseif item.type == "layout" and item.title== "2 Columns" %}
                         <div class="row">
                             <div class="col-md-6 col-xs-6">
-                                {% set left = item.left %}
+                                {% set left = item.left|default([]) %}
                                 {% for leftComp in left %}
                                     {% if leftComp.tpl == "header" %}
                                         <div class="panel panel-default">
@@ -61,18 +84,26 @@
                                         </div>
                                     {% elseif leftComp.tpl == "table" %}
                                         <div class="panel panel-default">
-                                            <div class="panel-heading">{{ include(template_from_string(leftComp.title|raw))}}</div>
+                                            <div class="panel-heading"><h4>{{ include(template_from_string(leftComp.title|raw))}}</h4><hr /></div>
                                             <div class="panel-body" summernote airMode>
                                                 {{ include(template_from_string(leftComp.description|raw)) }}
                                             </div>
                                             <table class="table">
                                                 <thead>
-                                                    {% for head in leftComp.fields %}
+                                                    {% for head in leftComp.attributes %}
                                                     <th>{{ include(template_from_string(head.label|raw))}}</th>
                                                     {% endfor %}
                                                 </thead>
                                                 <tbody>
-                                                    {{dump(leftComp)}}
+                                                    {% for row in _context[leftComp.title] %}
+                                                        <tr>
+                                                            {% for field in leftComp.attributes %}
+                                                                <td>
+                                                                    {{ attribute(row, field) }}
+                                                                </td>
+                                                            {% endfor %}
+                                                        </tr>
+                                                    {% endfor %}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -80,7 +111,7 @@
                                 {% endfor %}
                             </div>
                             <div class="col-md-6 col-xs-6">
-                                {% set right = item.right %}
+                                {% set right = item.right|default([]) %}
                                 {% for rightComp in right %}
                                     {% if rightComp.tpl == "header" %}
                                         <div class="panel panel-default">
@@ -90,18 +121,26 @@
                                         </div>
                                     {% elseif rightComp.tpl == "table" %}
                                         <div class="panel panel-default">
-                                            <div class="panel-heading">{{ include(template_from_string(rightComp.title))}}</div>
+                                            <div class="panel-heading"><h4>{{ include(template_from_string(rightComp.title))}}</h4><hr /></div>
                                             <div class="panel-body" summernote airMode>
                                                 {{ include(template_from_string(rightComp.description))}}
                                             </div>
                                             <table class="table">
                                                 <thead>
-                                                    {% for head in rightComp.fields %}
+                                                    {% for head in rightComp.attributes %}
                                                     <th>{{ include(template_from_string(head.label))}}</th>
                                                     {% endfor %}
                                                 </thead>
                                                 <tbody>
-                                                    {{dump(rightComp)}}
+                                                    {% for row in _context[rightComp.title] %}
+                                                        <tr>
+                                                            {% for field in rightComp.attributes %}
+                                                                <td>
+                                                                    {{ attribute(row, field) }}
+                                                                </td>
+                                                            {% endfor %}
+                                                        </tr>
+                                                    {% endfor %}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -146,23 +185,21 @@
     {% block javascripts %}
         <script src="{{ asset("assets/vendor/summernote/dist/summernote.min.js")}}"></script>
         <script src="{{ asset("assets/vendor/angular-summernote/dist/angular-summernote.min.js")}}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+        {#<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>#}
         <script>
                     $(document).ready(function () {
                         $('#cmd').click(function () {
                             var doc = new jsPDF();
                             var html = $('#model').html();
 // We'll make our own renderer to skip this editor
-                            var specialElementHandlers = {
-                                '#editor': function (element, renderer) {
+                            var specialElementHandlers = {'#editor': function (element, renderer) {
                                     return true;
                                 }
                             };
 
 // All units are in the set measurement for the document
 // This can be changed to "pt" (points), "mm" (Default), "cm", "in"
-                            doc.fromHTML(html, 15, 15, {
-                                'width': 170,
+                            doc.fromHTML(html, 15, 15, {'width': 170,
                                 'elementHandlers': specialElementHandlers
                             });
                             doc.save(document.title + ".pdf");

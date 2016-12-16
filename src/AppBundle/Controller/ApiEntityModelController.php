@@ -33,7 +33,7 @@ class ApiEntityModelController extends FOSRestController {
                 $em->persist($modelEntity);
                 $em->flush();
                 $status = 200;
-                $result = array('success' => 'Ok');
+                $result = array('success' => 'Ok', 'id' => $modelEntity->getId());
             } catch (\Exception $exc) {
                 $status = 500;
                 $result = array('error' => $exc->getMessage());

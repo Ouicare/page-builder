@@ -2,9 +2,10 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use AppBundle\Entity\Traits\ModelType;
 use AppBundle\Entity\Traits\ModelCategory;
+use AppBundle\Entity\Traits\ModelType;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Model
@@ -49,11 +50,25 @@ use ModelType;
     private $category;
 
     /**
+     * Many User have Many Phonenumbers.
+     * @ORM\ManyToMany(targetEntity="ModelEntity")
+     * @ORM\JoinTable(name="model_model_entity",
+     *      joinColumns={@ORM\JoinColumn(name="model_entity_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="model_id", referencedColumnName="id")}
+     *      )
+     */
+    private $entities;
+
+    /**
      * @var array
      *
      * @ORM\Column(name="content", type="array")
      */
     private $content;
+
+    public function __construct() {
+        $this->entities = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -136,7 +151,6 @@ use ModelType;
         return;
     }
 
-
     /**
      * Set content
      *
@@ -144,8 +158,7 @@ use ModelType;
      *
      * @return Model
      */
-    public function setContent($content)
-    {
+    public function setContent($content) {
         $this->content = $content;
 
         return $this;
@@ -156,8 +169,39 @@ use ModelType;
      *
      * @return array
      */
-    public function getContent()
-    {
+    public function getContent() {
         return $this->content;
     }
+
+    /**
+     * Add entity
+     *
+     * @param \AppBundle\Entity\ModelEntity $entity
+     *
+     * @return Model
+     */
+    public function addEntity(\AppBundle\Entity\ModelEntity $entity) {
+        $this->entities[] = $entity;
+
+        return $this;
+    }
+
+    /**
+     * Remove entity
+     *
+     * @param \AppBundle\Entity\ModelEntity $entity
+     */
+    public function removeEntity(\AppBundle\Entity\ModelEntity $entity) {
+        $this->entities->removeElement($entity);
+    }
+
+    /**
+     * Get entities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEntities() {
+        return $this->entities;
+    }
+
 }
