@@ -88,4 +88,18 @@ class Variable {
         return $this->expression;
     }
 
+    public function getProperty($param) {
+        switch ($param) {
+            case 'id':
+                return $this->id;
+                break;
+            case 'name':
+                return $this->name;
+                break;
+            case 'expression':
+                return $this->expression;
+                break;
+        }
+    }
+
 }

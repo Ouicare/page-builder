@@ -76,9 +76,11 @@ use ModelCategory;
             $items = $data['items'];
             //@todo: refactor, refactor, refactor
             $model = new Model();
-            foreach ($data['entities'] as $id) {
-                $entity = $em->getRepository("AppBundle:ModelEntity")->find($id);
-                $model->addEntity($entity);
+            if (isset($data['entities'])) {
+                foreach ($data['entities'] as $id) {
+                    $entity = $em->getRepository("AppBundle:ModelEntity")->find($id);
+                    $model->addEntity($entity);
+                }
             }
             $model->setCategory(array_search($category, $model->modelCategory));
             $model->setType(array_search($type, $model->modelType));
@@ -100,11 +102,16 @@ use ModelCategory;
 
         $modelEntities = $em->getRepository('AppBundle:ModelEntity')->findAll();
         foreach ($modelEntities as $value) {
+
+
+            $pieces = explode("\\", $value->getType());
+            $bundle = str_replace("Bundle", "", $pieces[0]);
+            $entity = $pieces[2];
             $data = array();
             $data['id'] = $value->getId();
             $data['label'] = $value->getTitle();
             foreach ($value->getAttributes() as $attr) {
-                $childreens[] = array('label' => $attr['label'], 'name' => $attr['name'], 'data' => array('parent' => array('id' => $value->getId(), 'name' => $value->getName())));
+                $childreens[] = array('label' => $attr['label'], 'name' => $attr['name'], 'data' => array('type' => $bundle, 'parent' => array('id' => $value->getId(), 'name' => $entity)));
             }
             $data['children'] = $childreens;
             $models[] = $data;

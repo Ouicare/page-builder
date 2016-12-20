@@ -204,4 +204,21 @@ use ModelType;
         return $this->entities;
     }
 
+    public function getProperty($param) {
+        switch ($param) {
+            case 'id':
+                return $this->id;
+                break;
+            case 'name':
+                return $this->name;
+                break;
+            case 'type':
+                return $this->type;
+                break;
+            case 'category':
+                return $this->category;
+                break;
+        }
+    }
+
 }

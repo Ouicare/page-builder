@@ -21,20 +21,20 @@ class ModelController extends Controller {
         $data = array(
             'model' => $currentModel,
         );
-        foreach ($currentModel->getEntities() as $entity) {
-            /* @var $entity \AppBundle\Entity\ModelEntity */
-            $param = $request->query->get(strtolower($entity->getName()));
-            if (!$param) {
-                $value = $em->getRepository($entity->getType())->findAll();
-            } else {
-                $value = $em->getRepository($entity->getType())->find($param);
-                if (!$value) {
-                    throw $this->createNotFoundException('Unable to find required entity.');
-                }
-            }
-            $data[$entity->getName()] = $value;
-            //Get the rest
-        }
+//        foreach ($currentModel->getEntities() as $entity) {
+//            /* @var $entity \AppBundle\Entity\ModelEntity */
+//            $param = $request->query->get(strtolower($entity->getName()));
+//            if (!$param) {
+//                $value = $em->getRepository($entity->getType())->findAll();
+//            } else {
+//                $value = $em->getRepository($entity->getType())->find($param);
+//                if (!$value) {
+//                    throw $this->createNotFoundException('Unable to find required entity.');
+//                }
+//            }
+//            $data[$entity->getName()] = $value;
+//            //Get the rest
+//        }
         return $this->render('AppBundle:Model:show.html.twig', $data);
     }
 

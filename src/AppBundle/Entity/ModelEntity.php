@@ -182,7 +182,6 @@ class ModelEntity {
         return $this->tpl;
     }
 
-
     /**
      * Set name
      *
@@ -190,8 +189,7 @@ class ModelEntity {
      *
      * @return ModelEntity
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -202,8 +200,31 @@ class ModelEntity {
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
+
+    public function getProperty($param) {
+        switch ($param) {
+            case 'id':
+                return $this->id;
+                break;
+            case 'name':
+                return $this->name;
+                break;
+            case 'tpl':
+                return $this->tpl;
+                break;
+            case 'type':
+                return $this->type;
+                break;
+            case 'title':
+                return $this->title;
+                break;
+            case 'description':
+                return $this->description;
+                break;
+        }
+    }
+
 }

@@ -124,7 +124,6 @@ class VisualElement {
         return $this->type;
     }
 
-
     /**
      * Set title
      *
@@ -132,8 +131,7 @@ class VisualElement {
      *
      * @return VisualElement
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
 
         return $this;
@@ -144,8 +142,28 @@ class VisualElement {
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
+
+    public function getProperty($param) {
+        switch ($param) {
+            case 'id':
+                return $this->id;
+                break;
+            case 'title':
+                return $this->title;
+                break;
+            case 'description':
+                return $this->description;
+                break;
+            case 'type':
+                return $this->type;
+                break;
+            case 'content':
+                return $this->content;
+                break;
+        }
+    }
+
 }

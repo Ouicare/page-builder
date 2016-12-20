@@ -24,7 +24,7 @@
                                     {% if composant.tpl == "header" %}
                                         <div class="panel panel-default">
                                             <div class="panel-body" summernote airMode>
-                                                {{composant.text |raw }}
+                                                {{composant.text |params }}
                                             </div>
                                         </div>
                                     {% elseif composant.tpl == "table" %}
@@ -172,7 +172,6 @@
         @media print {
             .not-printable {
                 display: none;
-                // Any Other style you want to add
             }
             .sf-toolbar{
                 display: none;
