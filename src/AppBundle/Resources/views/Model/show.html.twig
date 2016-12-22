@@ -28,45 +28,7 @@
                                             </div>
                                         </div>
                                     {% elseif composant.tpl == "table" %}
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading" summernote airMode><h4>{{composant.title}}</h4><hr /></div>
-                                            <div class="panel-body" summernote airMode>
-                                                {{composant.description}}
-                                            </div>
-                                            <table class="table">
-                                                <thead>
-                                                    {% for head in composant.attributes %}
-                                                    <th>{{head.label}}</th>
-                                                    {% endfor %}
-                                                </thead>
-                                                <tbody>
-                                                    {% if _context[composant.name] is defined %}
-                                                        {% if _context[composant.name] is iterable %}
-                                                            {% for row in _context[composant.name] %}
-                                                                <tr>
-                                                                    {% for field in composant.attributes %}
-                                                                        <td>
-                                                                            {{ attribute(row, field.name) }}
-                                                                        </td>
-                                                                    {% endfor %}
-                                                                </tr>
-                                                            {% endfor %}
-                                                        {% else %}
-                                                            <tr>
-                                                                {% for field in composant.attributes %}
-                                                                    <td>
-                                                                        {{ attribute(_context[composant.name], field.name) }}
-                                                                    </td>
-                                                                {% endfor %}
-                                                            </tr>
-                                                        {% endif %}
-                                                    {% else %}
-                                                        <tr><td colspan="{{composant.attributes|length}}"><i>Donnée invalide</i></td></tr>
-                                                    {% endif %}
-
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                        {{composant|entitytable}}
                                     {% endif %}
                                 {% endfor %}
                             </div>

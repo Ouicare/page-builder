@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+    <div class="panel-heading" summernote airMode><h4>{{composant.title}}</h4><hr /></div>
+    <div class="panel-body" summernote airMode>
+        {{composant.description}}
+    </div>
+    <table class="table">
+        <thead>
+            {% for head in composant.attributes %}
+            <th>{{head.label}}</th>
+            {% endfor %}
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    {% for head in composant.attributes %}
+                        <td>{{entity.property(head.name)}}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

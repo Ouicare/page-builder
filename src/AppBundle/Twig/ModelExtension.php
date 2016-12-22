@@ -55,7 +55,7 @@ class ModelExtension extends \Twig_Extension {
     }
 
     public function getName() {
-        return 'app_extension';
+        return 'app_model_extension';
     }
 
 }

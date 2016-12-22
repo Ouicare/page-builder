@@ -11,8 +11,16 @@ services:
         class:        Twig_Extension_StringLoader
         tags:
              - { name: 'twig.extension' }
-    app.twig_extension:
+    app.twig_model_extension:
         class: AppBundle\Twig\ModelExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+        arguments:
+            em: "@doctrine.orm.entity_manager"
+
+    app.twig_entity_extension:
+        class: AppBundle\Twig\EntityExtension
         public: false
         tags:
             - { name: twig.extension }
